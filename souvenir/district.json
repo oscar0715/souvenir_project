@@ -1,4 +1,20 @@
-[
+[	
+	{
+		"model":"address.district",
+		"pk":null,
+		"fields":{
+			"name":"选项被外星人抓走了",
+			"code":-1
+		}
+	},
+	{
+		"model":"address.district",
+		"pk":null,
+		"fields":{
+			"name":"请选择",
+			"code": 0
+		}
+	},
 	{
 		"model":"address.district",
 		"pk":null,

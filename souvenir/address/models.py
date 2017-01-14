@@ -6,28 +6,22 @@ from accounts.models import MyProfile
 
 # Create your models here.
 class District(models.Model):
-	code = models.IntegerField()
+	code = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length = 50)
 	def __str__(self):
 		return self.name
 
 class Country(models.Model):
+	code = models.IntegerField(primary_key=True)
 	country = models.CharField(max_length = 50)
 	name = models.CharField(max_length = 50)
-	code = models.IntegerField()
 	def __str__(self):
-		return self.name
-
-# default country list
-countries = Country.objects.all()
-COUNTRY_CHOICES = []
-for country in countries:
-	COUNTRY_CHOICES.append([country.code,country.name])
+		return self.name 
 
 class User_Address(models.Model):
 	user = models.ForeignKey(MyProfile, on_delete=models.CASCADE)
 
-	country = models.IntegerField(choices=COUNTRY_CHOICES)
+	country = models.IntegerField()
 	province = models.IntegerField()
 	city = models.IntegerField()
 	district = models.IntegerField()

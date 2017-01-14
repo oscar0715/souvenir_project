@@ -47,27 +47,17 @@ def newPost(request):
 
 
 def getDistrictList(request):
-	list = []
-	c = {}
-	c['name'] = "请选择"
-	c['code'] = 0
-	list.append(c)
+	results = District.objects.none()
 	
 	code = request.GET.get('code', None)
+	
 	
 	# 选择了国家，如果是中国，列出所有中国的省
 	if code == '86':
 		# get all the provinces
-		provinces = District.objects.filter(code__regex = r'(0){4}$')
-
-		# append to the list
-		for province in provinces:
-			c = {}
-			c['name'] = province.name
-			c['code'] = province.code
-			list.append(c)
-
-		# logging.debug("[view.BUG] = " + str(list.count()))
+		provinces = District.objects.filter(code__regex = r'(0){4}$') | District.objects.filter(code = 0)
+		results = provinces
+		# logging.debug("[view.BUG] = " + str(results.count()))
 	
 	elif len(code) == 6:
 		# 如果选择是中国的某个省，则要返回市
@@ -76,53 +66,45 @@ def getDistrictList(request):
 			# 取字符串前两位
 			province_code = code[0:2]
 			city_regex = province_code+'(([1-9].)|(.[1-9]))0{2}'
-			cities = District.objects.filter(code__regex = r''+city_regex)
+			cities = District.objects.filter(code__regex = r''+city_regex) | District.objects.filter(code = 0)
 
 			# logging.debug("[city_regex] = " + city_regex)
 			# logging.debug("[cities.count()] = " + str(cities.count()))
 
-			for city in cities:
-				c = {}
-				c['name'] = city.name
-				c['code'] = city.code
-				list.append(c)
+			results = cities
 
 		# 如果选择的是某个市，则要返回区
 		if re.match('..(([1-9].)|(.[1-9]))0{2}',code):
 			city_code = code[0:4]
 			district_regex = city_code+'(([1-9].)|(.[1-9]))'
-			districts = District.objects.filter(code__regex = r''+district_regex)
+			districts = District.objects.filter(code__regex = r''+district_regex)| District.objects.filter(code = 0)
 
-			if districts.count() == 0:
+			if districts.count() == 1:
 				province_code = code[0:2]
 				district_regex = province_code+'..(([1-9].)|(.[1-9]))'
-				districts = District.objects.filter(code__regex = r''+district_regex)
+				districts = District.objects.filter(code__regex = r''+district_regex)| District.objects.filter(code = 0)
 			
-			# logging.debug("[district_regex] = " + district_regex)
-			# logging.debug("[districts.count()] = " + str(districts.count()))
-
-			
-			for district in districts:
-				c = {}
-				c['name'] = district.name
-				c['code'] = district.code
-				list.append(c)
+			results = districts
+			logging.debug("[district_regex] = " + district_regex)
+			logging.debug("[districts.count()] = " + str(districts.count()))
 		else :
 			# 别的情况不作处理，也没别的情况了
 			# logging.debug("[code] = " + str(code))
 			pass
 	else:
-		# 如果是别的国家，只返回 0
-		logging.debug("Here2")
-		del list[:]
+		# 如果是别的国家，只返回 -1
+		results = District.objects.filter(code = -1)
+			
+	list = []
+	for district in results:
 		c = {}
-		c['name'] = "------"
-		c['code'] = 0
+		c['name'] = district.name
+		c['code'] = district.code
 		list.append(c)
 	
 	# https://rayed.com/wordpress/?p=1508
 	return HttpResponse(json.dumps(list),content_type = "application/json;charset=utf-8")
-
+ 
 
 # List all of the Posts	
 class IndexView(ListView):
