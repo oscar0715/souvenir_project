@@ -21,7 +21,6 @@ for province in provinces:
 	PROVINCE_CHOICES.append([province.code,province.name])
 
 class PostForm(ModelForm):
-
 	class Meta:
 		model = Post
 		fields = ('post_title',
@@ -52,4 +51,9 @@ class PostForm(ModelForm):
 
 	def __init__(self, *args, **kwargs):
 	    super(PostForm, self).__init__(*args, **kwargs)
-	    self.initial['post_country'] = '86'
+	    # 37 是中国的 在 address_country 表中的id，注意不是code
+	    self.initial['post_country'] = 37
+	    self.fields['post_country'].empty_label = "请选择"
+
+	    self.fields["post_province"].queryset = District.objects.filter(code__regex = r'^..(0){4}$')
+	    self.fields['post_province'].empty_label = "请选择"

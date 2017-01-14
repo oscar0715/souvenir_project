@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # material 
     'material',
+    
     # default
     'django.contrib.admin',
     'django.contrib.sites',
