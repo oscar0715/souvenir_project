@@ -4,24 +4,6 @@
 		"model":"address.Country",
 		"pk":null,
 		"fields":{
-			"country":"404 Not Found",
-			"name":"选项被外星人抓走了",
-			"code":-1
-		}
-	},
-	{
-		"model":"address.Country",
-		"pk":null,
-		"fields":{
-			"country":"Please select",
-			"name":"请选择",
-			"code": 0
-		}
-	},
-	{
-		"model":"address.Country",
-		"pk":null,
-		"fields":{
 			"country":"Angola",
 			"name":"安哥拉",
 			"code":244

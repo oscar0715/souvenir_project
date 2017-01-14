@@ -51,6 +51,7 @@ def getDistrictList(request):
 	
 	code = request.GET.get('code', None)
 	
+	# logging.debug("[code] = " + str(code))
 	
 	# 选择了国家，如果是中国，列出所有中国的省
 	if code == '86':
