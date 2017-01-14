@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">      
+
+	<title>{% block title %}Post{% endblock %}</title>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	{% block meta %}{% endblock %}
+ 	
+</head>
+<body id="{% block body_id %}{% endblock %}" class="container {% block body_class %}{% endblock %}">
+  
+
+  <div id="body">
+	{% block body %}
+	  <div class="content_title">
+		{% block content_title %}{% endblock %}
+	  </div>
+	  <div class="content">
+		{% block content %}{% endblock %}
+	  </div>
+	{% endblock %}
+  </div>
+  
+</body>
+
+<script src="//code.jquery.com/jquery-2.1.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> 
+
+
+{% block script %}{% endblock %}        
+
+</html>

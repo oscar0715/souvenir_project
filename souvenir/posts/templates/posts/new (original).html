@@ -1,0 +1,26 @@
+{% extends 'posts/post_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load material_form %}
+
+<!-- static css file -->
+
+{% block title %}Create a Post{% endblock %}
+
+<!-- body_class is materialize container -->
+{% block body_class %}container{% endblock %}
+
+{% block content_title %}New Posts{% endblock %}
+{% block content %}
+	<form enctype="multipart/form-data" action='' method='POST'>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<div class='fieldWrapper'> <p><input type='submit' value='提交'></p></div>
+	</form>
+
+{% endblock %}
+
+
+{% block script %}
+	<script type="text/javascript" src="{% static "js/new.js" %}"></script>
+{% endblock %}
