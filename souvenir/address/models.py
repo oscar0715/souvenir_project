@@ -19,12 +19,21 @@ class Country(models.Model):
 		return self.name 
 
 class User_Address(models.Model):
-	user = models.ForeignKey(MyProfile, on_delete=models.CASCADE)
+	user = models.ForeignKey(MyProfile, 
+		on_delete=models.CASCADE)
 
-	country = models.IntegerField()
-	province = models.IntegerField()
-	city = models.IntegerField()
-	district = models.IntegerField()
+	user_country = models.ForeignKey(Country,
+		verbose_name ='国家')
+	user_province = models.ForeignKey(District, 
+		related_name='user_province',
+		verbose_name ='省')
+	user_city = models.ForeignKey(District, 
+		related_name='user_city',
+		verbose_name ='市')
+	user_district = models.ForeignKey(District, 
+		related_name='user_district',
+		verbose_name ='区')
+
 	detail_address = models.CharField(max_length=200, blank = False)
 	postcode = models.PositiveIntegerField(blank = False)
 	receiver_name = models.CharField(max_length=50,blank= False)

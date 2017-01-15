@@ -23,23 +23,37 @@ class TimeStampedModel(models.Model):
 
 class Post(TimeStampedModel):
 	# basic
-	post_title = models.CharField(max_length=200,null =False)
-	post_description = models.TextField()
+	post_title = models.CharField(max_length=200,
+		null =False,
+		verbose_name ='发片令标题')
+	post_description = models.TextField(verbose_name ='描述')
 
 	# the quantity of postcards the sender prepared 
-	post_quantity = models.PositiveIntegerField(null=False)
+	post_quantity = models.PositiveIntegerField(null=False,
+		verbose_name ='发片数量')
 
 	# the number of cards left after a card is claimed
-	card_left = models.IntegerField(default=0)
+	card_left = models.IntegerField(default=0,
+		verbose_name ='待领取')
 	
 	# picture
-	post_picture = models.ImageField(null=True,blank = True,upload_to=user_directory_path);
+	post_picture = models.ImageField(null=True,
+		blank = True,
+		upload_to=user_directory_path,
+		verbose_name ='上传一张图片')
 
 	# sent from
-	post_country = models.ForeignKey(Country)
-	post_province = models.ForeignKey(District, related_name='province')
-	post_city = models.ForeignKey(District, related_name='city')
-	post_district = models.ForeignKey(District, related_name='district')
+	post_country = models.ForeignKey(Country,
+		verbose_name ='寄片的国家与地区')
+	post_province = models.ForeignKey(District, 
+		related_name='province',
+		verbose_name ='寄片的省')
+	post_city = models.ForeignKey(District,
+		related_name='city',
+		verbose_name ='寄片的城市')
+	post_district = models.ForeignKey(District, 
+		related_name='district',
+		verbose_name ='寄片的区县')
 
 	# user who creates the post 
 	user = models.ForeignKey(MyProfile)
