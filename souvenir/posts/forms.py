@@ -11,7 +11,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-default_choices=[[0, '------']]
+provinces_set = District.objects.filter(code__regex = r'^..(0){4}$') | District.objects.filter(code = 0)
+provinces_list = []
+for district in provinces_set:
+	c = {}
+	logging.debug("[district.name] = " + district.name)
+	c['value'] = district.code
+	c['text'] = district.name
+	provinces_list.append(c)
 
 
 class PostForm(ModelForm):
@@ -36,12 +43,6 @@ class PostForm(ModelForm):
 			'post_city' : _('寄片的城市'),
 			'post_district' : _('寄片的区县')
 		}
-		# widgets = {
-		# 	"post_province" : forms.Select(attrs={'class':'select'},choices=PROVINCE_CHOICES),
-		# 	"post_city" : forms.Select(attrs={'class':'select'},choices=default_choices),
-		# 	"post_district" : forms.Select(attrs={'class':'select'},choices=default_choices)
-
-		# }
 
 	def __init__(self, *args, **kwargs):
 	    super(PostForm, self).__init__(*args, **kwargs)
@@ -49,11 +50,14 @@ class PostForm(ModelForm):
 	    self.initial['post_country'] = 86
 	    self.fields['post_country'].empty_label = "请选择"
 
-	    self.fields["post_province"].queryset = District.objects.filter(code__regex = r'^..(0){4}$') | District.objects.filter(code = 0)
+	    self.fields["post_province"].queryset = provinces_set | District.objects.filter(code = 0) | District.objects.filter(code = -1)
 	    self.fields['post_province'].empty_label = None
+	    self.fields['post_province'].choices = provinces_list
 
-	    self.fields["post_city"].queryset = District.objects.none()
+	    self.fields["post_city"].queryset = District.objects.filter(code__regex = r'^.{4}(0){2}$') | District.objects.filter(code = 0)| District.objects.filter(code = -1)
 	    self.fields['post_city'].empty_label = None
+	    self.fields['post_city'].choices = []
 	    
-	    self.fields["post_district"].queryset = District.objects.none()
+	    self.fields["post_district"].queryset = District.objects.filter(code__regex = r'(([1-9].)|(.[1-9]))$') | District.objects.filter(code = 0)
 	    self.fields['post_district'].empty_label = None
+	    self.fields['post_district'].choices = []

@@ -27,6 +27,15 @@ def newPost(request):
 		# 获取当前用户
 		current_user = request.user.my_profile
 		form = PostForm(request.POST,request.FILES or None,instance=Post(user = current_user))
+		
+		# form.data['post_province'] = District.objects.get(code=form.data['post_province']).code
+		# form.data['post_city'] = District.objects.get(code=form.data['post_city']).code
+		# form.data['post_district'] = District.objects.get(code=form.data['post_district']).code
+		logging.debug("[view.is_valid_post_country] = " + form.data['post_country'])
+		logging.debug("[view.is_valid_post_province] = " + form.data['post_province'])
+		logging.debug("[view.is_valid_post_city] = " +form.data['post_city'])
+		logging.debug("[view.is_valid_post_district] = " + form.data['post_district'])
+
 		if form.is_valid():
 			# 创建一个 instance 但是不提交
 			post = form.save(commit=False)
@@ -52,7 +61,7 @@ def getDistrictList(request):
 	code = request.GET.get('code', None)
 	
 	# logging.debug("[code] = " + str(code))
-	
+
 	# 选择了国家，如果是中国，列出所有中国的省
 	if code == '86':
 		# get all the provinces

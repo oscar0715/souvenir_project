@@ -13,7 +13,9 @@
 	<form enctype="multipart/form-data" action='' method='POST'>
 		{% csrf_token %}
 		{{ form.as_p }}
-		<div class='fieldWrapper'> <p><input type='submit' value='提交'></p></div>
+		<!-- <div class='fieldWrapper'> <p><input type='submit' value='提交' ></p></div> -->
+		<a class="waves-effect waves-light btn"><input type='submit' value='提交' ></a>
+
 	</form>
 
 {% endblock %}
