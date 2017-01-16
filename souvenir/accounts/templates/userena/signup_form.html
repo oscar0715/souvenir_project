@@ -1,11 +1,8 @@
 {% extends 'userena/userena_base.html' %}
 {% load i18n %}
-{% load material_form %}
 
 {% block title %}{% trans "用户注册" %}{% endblock %}
 
-<!-- body_class is materialize container -->
-{% block body_class %}container{% endblock %}
 
 {% block content %}
 <div class="row card">
@@ -13,13 +10,12 @@
 		<span class="card-title">注册</span>
 		<div class="row">
 			<form action="" method="post" class="viewform">
-					{% csrf_token %}
-					
-					{{ form.non_field_errors }}
-					
-					{% form form=form %}{% endform %}
-
-					<input type="submit" value="{% trans "注册" %}" />
+				{% csrf_token %}
+				
+				{{ form.non_field_errors }}
+				
+				{{ form }}
+				<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()" >注册</a>
 			</form>
 		</div>
 	</div>

@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'userena',
     'guardian',
     'easy_thumbnails',
-
-    # material 
-    'material',
     
     # default
     'django.contrib.admin',
@@ -71,7 +68,7 @@ ROOT_URLCONF = 'souvenir.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +79,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
 ]
 
 
@@ -113,7 +115,8 @@ AUTH_PROFILE_MODULE = 'accounts.MyProfile'
 USERENA_SIGNIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
-
+USERENA_ACTIVATION_REQUIRED = False
+USERENA_SIGNIN_AFTER_SIGNUP = True
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
