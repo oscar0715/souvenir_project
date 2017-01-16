@@ -1,9 +1,14 @@
 .nav-avatar{
-	width : 24px;
-	height : 24px;
+	width : 28px;
+	height : 28px;
 	vertical-align: middle;
 }
 
-/*body {
-    background: black;
-}*/
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+.dropdown-content li a {
+	color: #444;
+}
