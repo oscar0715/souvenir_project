@@ -1,8 +1,31 @@
 body {
-	background: url("../image/tulou.jpg") ;
+
+	color: #ccc;
+	background: url("../image/chengqiang.jpg") no-repeat;
+	background-size: cover;
+
 }
 
 /*颜色遮罩*/
 main {
-	background: rgba(0,0,0,.3);
+	background: rgba(0,0,0,.3) ;
+}
+
+.tabs .tab a{
+    color:#C0C0C0;
+}
+.tabs .tab a:hover,.tabs .tab a.active {
+	background-color:transparent;
+	color:#434343;
+}
+.tabs .tab.disabled a,.tabs .tab.disabled a:hover {
+	color:rgba(102,147,153,0.7);	
+}
+.tabs .indicator {
+	background-color:#434343;
+}
+
+.transparentpad{
+	background-color: rgba(255,255,255,0.9)
+    /*margin-bottom:5%;*/
 }

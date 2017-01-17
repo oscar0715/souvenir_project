@@ -14,44 +14,44 @@
 
 
 {% block content %}
-
-
+<br><br><br><br><br><br><br><br>
 <div class="row">
-	<div class="col s4 offset-s4">
-		<!-- Card -->
-		<div class="card transparent">
-			<div class="card-content">
-				<!-- TAB -->
-				<div>
-					<ul class="tabs transparent">
-						<li class="tab col s6"><a class="active" href="#test1">注册</a></li>
-						<li class="tab col s6"><a href="#test2">登陆</a></li>
-					</ul>
-				</div>
-
-				<div id="test1" class="col s12">
-					<form action="" method="post" class="viewform">
-						{% csrf_token %}
-						
-						{{ form.non_field_errors }}
-						
-						{{ form }}
-						<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()">注册</a>
-					</form>
-				</div>
-
-				<div id="test2" class="col s12">
-					<form action="" method="post" class="viewform">
-						{% csrf_token %}
-						
-						{{ form.non_field_errors }}
-						
-						{{ form }}
-						<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()">注册</a>
-					</form>
-				</div>
-			</div>
+	<div class="col s4 offset-s4 transparentpad black-text z-depth-5">
+		<!-- TAB -->
+		<div >
+			<ul class="tabs transparent">
+				<li class="tab col s6"><a class="active" href="#test1">注册</a></li>
+				<li class="tab col s6"><a href="#test2">登陆</a></li>
+			</ul>
 		</div>
+
+		<br>
+
+		<div id="test1" class="col s12">
+			<form action="" method="post" class="viewform">
+				{% csrf_token %}
+				
+				{{ form.non_field_errors }}
+				
+				{{ form }}
+				<div class="center-align">
+					<a class="grey darken-2 waves-effect waves-light btn " onclick="$(this).closest('form').submit()">注册</a>
+				</div>
+			</form>
+		</div>
+
+		<div id="test2" class="col s12">
+			<form action="" method="post" class="viewform">
+				{% csrf_token %}
+				
+				{{ form.non_field_errors }}
+				
+				{{ form }}
+				<a class="grey darken-2 waves-effect waves-light btn " onclick="$(this).closest('form').submit()">登陆</a>
+			</form>
+		</div>
+		<br>
+		<div><i class="Tiny material-icons">done_all</i></div>
 	</div>
 </div>
 {% endblock %}
