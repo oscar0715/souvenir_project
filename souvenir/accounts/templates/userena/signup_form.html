@@ -1,24 +1,60 @@
 {% extends 'userena/userena_base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}{% trans "用户注册" %}{% endblock %}
 
 
+{% block meta %}
+	<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/signup_form.css' %}" media="screen,projection">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+
 {% block content %}
-<div class="row card">
-	<div class="card-content">
-		<span class="card-title">注册</span>
-		<div class="row">
-			<form action="" method="post" class="viewform">
-				{% csrf_token %}
-				
-				{{ form.non_field_errors }}
-				
-				{{ form }}
-				<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()" >注册</a>
-			</form>
+
+
+<div class="row">
+	<div class="col s4 offset-s4">
+		<!-- Card -->
+		<div class="card transparent">
+			<div class="card-content">
+				<!-- TAB -->
+				<div>
+					<ul class="tabs transparent">
+						<li class="tab col s6"><a class="active" href="#test1">注册</a></li>
+						<li class="tab col s6"><a href="#test2">登陆</a></li>
+					</ul>
+				</div>
+
+				<div id="test1" class="col s12">
+					<form action="" method="post" class="viewform">
+						{% csrf_token %}
+						
+						{{ form.non_field_errors }}
+						
+						{{ form }}
+						<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()">注册</a>
+					</form>
+				</div>
+
+				<div id="test2" class="col s12">
+					<form action="" method="post" class="viewform">
+						{% csrf_token %}
+						
+						{{ form.non_field_errors }}
+						
+						{{ form }}
+						<a class="waves-effect waves-light btn" onclick="$(this).closest('form').submit()">注册</a>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+{% endblock %}
 
+{% block footer %}
 {% endblock %}
