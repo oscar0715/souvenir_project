@@ -114,9 +114,7 @@ ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'accounts.MyProfile'
 
 # Userena URI
-USERENA_SIGNIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
+USERENA_SIGNIN_REDIRECT_URL = '/users/%(username)s/'
 USERENA_ACTIVATION_REQUIRED = False
 USERENA_SIGNIN_AFTER_SIGNUP = True
 

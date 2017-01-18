@@ -29,12 +29,9 @@ urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 
 	# accounts
-	url(r'^accounts/signup/$',
-	   userena.views.signup, 
-	   {'template_name': 'userena/signup_form.html'}, 
-	   name='userena_signup'),
 	 
-	url(r'^accounts/', include('userena.urls')),
+	url(r'^users/', include('userena.urls')),
+	url(r'^accounts/', include('accounts.urls')),
 
 	# posts
 	url(r'^posts/', include('posts.urls')),

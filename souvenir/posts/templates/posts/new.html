@@ -7,13 +7,18 @@
 
 {% block title %}新建一条发片令{% endblock %}
 
-{% block body %}
-	<form enctype="multipart/form-data" action='' method='POST'>
+{% block content %}
+	<form enctype="multipart/form-data" action='' method='POST' id="new_form">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<!-- <div class='fieldWrapper'> <p><input type='submit' value='提交' ></p></div> -->
-		<a class="waves-effect waves-light btn"><input type='submit' value='提交' ></a>
+		<a class="waves-effect waves-light btn">
+			<input type='submit' value='提交' >
+		</a>
 
+		<p class="center-align">
+			<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#new_form').submit()">登陆</a>
+		</p>
 	</form>
 
 {% endblock %}

@@ -17,6 +17,7 @@ main {
 .tabs .tab a:hover,.tabs .tab a.active {
 	background-color:transparent;
 	color:#434343;
+	font-size: 18px;
 }
 .tabs .tab.disabled a,.tabs .tab.disabled a:hover {
 	color:rgba(102,147,153,0.7);	

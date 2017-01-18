@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 provinces_set = District.objects.filter(code__regex = r'^..(0){4}$') | District.objects.filter(code = 0)
 
+minus_set = District.objects.filter(code = -1)
 
 class PostForm(ModelForm):
 	class Meta:
@@ -43,8 +44,7 @@ class PostForm(ModelForm):
 
 	    self.fields["post_city"].queryset = District.objects.filter(code__regex = r'^.{4}(0){2}$') | District.objects.filter(code = 0)| District.objects.filter(code = -1)
 	    self.fields['post_city'].empty_label = None
-	    self.fields['post_city'].choices = []
-	    
+	    self.fields['post_city'].choices = [(province.code,province.name) for province in minus_set]
 	    self.fields["post_district"].queryset = District.objects.filter(code__regex = r'(([1-9].)|(.[1-9]))$') | District.objects.filter(code = 0)
 	    self.fields['post_district'].empty_label = None
-	    self.fields['post_district'].choices = []
+	    self.fields['post_district'].choices = [(province.code,province.name) for province in minus_set]
