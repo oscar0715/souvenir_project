@@ -20,8 +20,12 @@ class MyProfile(UserenaBaseProfile):
 		verbose_name=_('user'),
 		related_name='my_profile')
 
+	# 昵称
+	nick_name  = models.CharField(max_length = 30)
+
+
 	# 个人描述，微信的个性签名长度是 30 个字左右
-	description = models.CharField(max_length=100)
+	description = models.CharField(max_length=100,blank = True,null=True)
 	
 	# 性别
 	gender = models.CharField(max_length=1, choices=gender_choices, default='U')
@@ -38,7 +42,10 @@ class MyProfile(UserenaBaseProfile):
 	def __str__(self):
 		return self.user.username
 
-
+	def save(self, *args, **kwargs):
+		if not self.nick_name:
+			self.nick_name = self.user.username
+		super(MyProfile, self).save(*args, **kwargs)
 
 
 
