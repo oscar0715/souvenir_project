@@ -52,3 +52,13 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+
+/*主页的margin去掉*/
+nav {
+  margin: 0 0 0 0 !important;
+}
+
+#post_list {
+  margin-top: 2%;
+}
