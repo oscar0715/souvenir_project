@@ -37,6 +37,17 @@
 				</li>
 				<li>
 					<div class="collection-item avatar">
+						<i class="fa fa-user-circle circle" aria-hidden="false"></i>
+						<span class="title">
+							NickName:
+						</span>
+						<p>
+							{{user.my_profile.nick_name}}
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="collection-item avatar">
 						<i class="material-icons circle ">insert_chart</i>
 						<span class="title">
 							Description:
@@ -57,11 +68,24 @@
 						</p>
 					</div>
 				</li>
+
+				<li>
+					<div class="collection-item avatar">
+						<i class="material-icons circle">email</i>
+						<span class="title">
+							Email:
+						</span>
+						<p>
+							{{user.email}}
+						</p>
+					</div>
+				</li>
+		
 				<li>
 					<div class="collection-item avatar">
 						<i class="fa fa-paper-plane circle" aria-hidden="true"></i>
 						<span class="title">
-							Postcards sent
+							Postcards sent:
 						</span>
 						<p>
 							{{user.my_profile.post_sent}}
@@ -72,7 +96,7 @@
 					<div class="collection-item avatar">
 						<i class="fa fa-inbox circle" aria-hidden="true"></i>
 						<span class="title">
-							Postcards received
+							Postcards received:
 						</span>
 						<p>
 							{{user.my_profile.post_sent}}

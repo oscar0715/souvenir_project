@@ -4,90 +4,94 @@
 
 {% block meta %}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="{% static '/accounts/css/profile_detail.css' %}">
+	<link rel="stylesheet" href="{% static '/accounts/css/profile_form.css' %}">
 {% endblock %}
 
 {% block profile_content %}
-<form id='profile_form' action="" enctype="multipart/form-data" method="post">
+<div class="card-panel">
+	<form id='profile_form' action="" enctype="multipart/form-data" method="post">
 
-  {% csrf_token %}
+	  {% csrf_token %}
 
-    		{% if form.non_field_errors %}
-		<div class="card-panel ">
-			{% for error in form.non_field_errors %}
-				<label >{{error}}</label>
-				<!-- <div class="chip">
-				    {{error}}
-				    <i class="close material-icons">close</i>
-				</div> -->
-			{% endfor %}
-		</div>
-	{% endif %}
-	
-	<div class="row">
-		<div class="input-field col s12">
-			<div >
-				{{ form.nick_name.label_tag }}
-				{{ form.nick_name }}
-				{{ form.nick_name.errors }}
+	    		{% if form.non_field_errors %}
+			<div class="card-panel ">
+				{% for error in form.non_field_errors %}
+					<label >{{error}}</label>
+					<!-- <div class="chip">
+					    {{error}}
+					    <i class="close material-icons">close</i>
+					</div> -->
+				{% endfor %}
 			</div>
-		</div>
-	</div>
+		{% endif %}
 
-	<div class="row">
-		
-		<div id="mugshot_in_form" class="col s2 valign-wrapper">
-				<img id='mugshot' class="circle" src="{{user.my_profile.get_mugshot_url}}">
-		</div>
-
-		<div class="file-field input-field col s10">
+		<div class="row">
 			
-			<div class="grey darken-2 waves-effect waves-light btn">
-				<span>上传新头像</span>
-				<input id="id_mugshot" name='mugshot' type="file">
+			<div id="mugshot_in_form" class="col s2 valign-wrapper">
+					<img id='mugshot' class="circle" src="{{user.my_profile.get_mugshot_url}}">
 			</div>
-			<div class="file-path-wrapper">
-				<input class="file-path validate" type="text">
-			</div>	
 
-		</div>
-	</div>
+			<div class="file-field input-field col s10">
+				
+				<div class="grey darken-2 waves-effect waves-light btn">
+					<span>上传新头像</span>
+					<input id="id_mugshot" name='mugshot' type="file">
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>	
 
-	<div class="row">
-		<div class="input-field col s12">
-			<div >
-				{{ form.description.label_tag }}
-				{{ form.description }}
-				{{ form.description.errors }}
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="input-field col s12">
-			<div >
-				{{ form.gender }}
-				{{ form.gender.label_tag }}
-				{{ form.gender.errors }}
+		
+		<div class="row">
+			<div class="input-field col s12">
+				<div >
+					{{ form.nick_name.label_tag }}
+					{{ form.nick_name }}
+					{{ form.nick_name.errors }}
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="hide">
-		{{ form.post_sent }}
-		{{ form.post_received }}
-		{{ form.level}}
-		{{ form.privacy }}
-	</div>
-	
+		
+		<div class="row">
+			<div class="input-field col s12">
+				<div >
+					{{ form.description.label_tag }}
+					{{ form.description }}
+					{{ form.description.errors }}
+				</div>
+			</div>
+		</div>
 
-	{{ form.errors }}
+		<div class="row">
+			<div class="input-field col s12">
+				<div >
+					{{ form.gender }}
+					{{ form.gender.label_tag }}
+					{{ form.gender.errors }}
+				</div>
+			</div>
+		</div>
 
-	<p class="center-align">
-		<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#profile_form').submit()">保存</a>
-	</p>
+		<div class="hide">
+			{{ form.post_sent }}
+			{{ form.post_received }}
+			{{ form.level}}
+			{{ form.privacy }}
+		</div>
+		
 
-</form>
+		{{ form.errors }}
+
+		<p class="center-align">
+			<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#profile_form').submit()">保存</a>
+		</p>
+
+	</form>
+</div>
 {% endblock %}
 
 {% block script %}

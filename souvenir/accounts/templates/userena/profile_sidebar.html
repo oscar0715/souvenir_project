@@ -1,7 +1,7 @@
 <div id="profile_nav" class="collection">
 	<a href="{% url 'userena_profile_detail' user.username %}" class="collection-item" >Profile</a>
 	<a href="{% url 'userena_profile_edit' user.username %}" class="collection-item ">Edit Profile</a>
-	<!-- <a href="#!" class="collection-item">My_Post</a> -->
+	<a href="{% url 'userena_password_change' user.username %}" class="collection-item">Change Password</a>
 	<!-- <a href="#!" class="collection-item">My_Card</a> -->
 </div>
 
