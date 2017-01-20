@@ -8,41 +8,35 @@
 
 {% block profile_content %}
 <div class="card-panel">
-	<form action="" method="post" id="chang_password_form">
+	<form action="" method="post" id="change_email_form">
 
 		{% csrf_token %}
+
+		{% if form.non_field_errors %}
+			<div class="card-panel ">
+				{% for error in form.non_field_errors %}
+					<label >{{error}}</label>
+					<!-- <div class="chip">
+					    {{error}}
+					    <i class="close material-icons">close</i>
+					</div> -->
+				{% endfor %}
+			</div>
+		{% endif %}
+
 
 		<div class="row">
 			<div class="input-field col s12">
 				<div >
-					{{ form.old_password.label_tag }}
-					{{ form.old_password }}
+					{{ form.email.label_tag }}
+					{{ form.email }}
 					{{ form.old_password.errors }}
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="input-field col s12">
-				<div >
-					{{ form.new_password1.label_tag }}
-					{{ form.new_password1 }}
-					{{ form.new_password1.errors }}
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
-				<div >
-					{{ form.new_password2.label_tag }}
-					{{ form.new_password2 }}
-					{{ form.new_password2.errors }}
-				</div>
-			</div>
-		</div>
 		<p class="center-align">
-			<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#chang_password_form').submit()">保存</a>
+			<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#change_email_form').submit()">保存</a>
 		</p>
 	</form>
 </div>

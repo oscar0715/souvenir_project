@@ -13,7 +13,7 @@
 
 	  {% csrf_token %}
 
-	    		{% if form.non_field_errors %}
+	    {% if form.non_field_errors %}
 			<div class="card-panel ">
 				{% for error in form.non_field_errors %}
 					<label >{{error}}</label>
