@@ -31,9 +31,9 @@
 		{% for post in posts %}
 			<div class="row">
 				<div class="col s12 m6 offset-m3">
-					<div class="card z-depth-4">
+					<div class="card  hoverable">
 						<div class="card-image">
-							<img src="{{ post.post_picture.url }}">
+							<img class="materialboxed" src="{{ post.post_picture.url }}">
 							<span class="card-title">{{ post.post_title }}</span>
 						</div>
 						<div class="card-content">
