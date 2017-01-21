@@ -6,9 +6,9 @@
 
 {% block content_title %}{% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="row">
-	<div class="col s12 m8">
+	<div class="col s12 m8 offset-m2">
 		<div class="card">
 			<div class="card-image">
 				  <img src="{{ post.post_picture.url }}">
@@ -17,12 +17,7 @@
 			<div class="card-content">
 				  <p>{{ post.post_description }}</p>
 			</div>
-			<div class="card-content">
-				  <p>{{ post.post_description }}</p>
-			</div>
-			<div class="card-action">
-				<a href="/posts/{{ post.id }}">This is a link</a>
-			</div>
+
 		</div>
 	</div>
 </div>

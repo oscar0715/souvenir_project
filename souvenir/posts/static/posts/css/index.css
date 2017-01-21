@@ -7,7 +7,6 @@
  */
 
 
-
 p {
   line-height: 2rem;
 }
@@ -60,4 +59,15 @@ nav {
 
 #post_list {
   margin-top: 2%;
+}
+
+.post_title {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.card-content, .card-action {
+  cursor:pointer;
+  cursor:hand;
+
 }
