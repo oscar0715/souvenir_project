@@ -5,18 +5,23 @@
 
 <!-- static css file -->
 
-{% block title %}新建一条发片令{% endblock %}
+{% block title %}发布发片令{% endblock %}
 
 {% block content %}
-	<form enctype="multipart/form-data" action='' method='POST' id="new_form">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<!-- <div class='fieldWrapper'> <p><input type='submit' value='提交' ></p></div> -->
 
-		<p class="center-align">
-			<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#new_form').submit()">提交</a>
-		</p>
-	</form>
+	<div class="card-panel">
+		
+		<form enctype="multipart/form-data" action='' method='POST' id="new_form">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<!-- <div class='fieldWrapper'> <p><input type='submit' value='提交' ></p></div> -->
+
+			<p class="center-align">
+				<a class="grey darken-2 waves-effect waves-light btn " onclick="$('#new_form').submit()">提交</a>
+			</p>
+		</form>
+	</div>
+	
 
 {% endblock %}
 

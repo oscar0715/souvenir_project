@@ -10,7 +10,8 @@
 	<title>{% block title %}Post{% endblock %}</title>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> -->
+	<link rel="stylesheet" href="{% static 'css/materialize.css' %}">
 	
 	
 	{% block meta %}{% endblock %}
@@ -49,8 +50,8 @@
 
 <script src="//code.jquery.com/jquery-2.1.2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> 
-<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+<script type="text/javascript" src="{% static 'base_js/navbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'base_js/base.js' %}"></script>
 
 {% block script %}{% endblock %}        
 

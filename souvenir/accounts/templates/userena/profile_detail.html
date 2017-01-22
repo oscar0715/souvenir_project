@@ -8,104 +8,104 @@
 {% endblock %}
 
 {% block profile_content %}
-	<div class="card-panel">
-		<div class="row valign-wrapper">
-			<div class="col s2">
-				<img src="{{user.my_profile.get_mugshot_url}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-			</div>
-			<div class="col s10">
-				<span class="black-text">
-					<h4>{{user.my_profile.nick_name}}</h4>
-				</span>
-			</div>
+<div class="card-panel">
+	<div class="row valign-wrapper">
+		<div class="col s2">
+			<img src="{{user.my_profile.get_mugshot_url}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 		</div>
-
-		<div class="divider"></div>
-		
-		<div class="card-content">
-			<ul class="collection">
-				<li>
-					<div class="collection-item avatar">
-						<i class="material-icons circle ">perm_identity</i>
-						<span class="title">
-							Username:
-						</span>
-						<p>
-							{{user.username}}
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="collection-item avatar">
-						<i class="fa fa-user-circle circle" aria-hidden="false"></i>
-						<span class="title">
-							NickName:
-						</span>
-						<p>
-							{{user.my_profile.nick_name}}
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="collection-item avatar">
-						<i class="material-icons circle ">insert_chart</i>
-						<span class="title">
-							Description:
-						</span>
-						<p>
-							{{user.my_profile.description}}
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="collection-item avatar">
-						<i class="fa fa-venus-mars circle" aria-hidden="true"></i>
-						<span class="title">
-							Gender:
-						</span>
-						<p>
-							{{user.my_profile.get_gender_display}}
-						</p>
-					</div>
-				</li>
-
-				<li>
-					<div class="collection-item avatar">
-						<i class="material-icons circle">email</i>
-						<span class="title">
-							Email:
-						</span>
-						<p>
-							{{user.email}}
-						</p>
-					</div>
-				</li>
-		
-				<li>
-					<div class="collection-item avatar">
-						<i class="fa fa-paper-plane circle" aria-hidden="true"></i>
-						<span class="title">
-							Postcards sent:
-						</span>
-						<p>
-							{{user.my_profile.post_sent}}
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="collection-item avatar">
-						<i class="fa fa-inbox circle" aria-hidden="true"></i>
-						<span class="title">
-							Postcards received:
-						</span>
-						<p>
-							{{user.my_profile.post_sent}}
-						</p>
-					</div>
-				</li>
-			</ul>	
-		</div>				
+		<div class="col s10">
+			<span class="black-text">
+				<h4>{{user.my_profile.nick_name}}</h4>
+			</span>
+		</div>
 	</div>
+
+	<div class="divider"></div>
+	
+	<div class="card-content">
+		<ul class="collection">
+			<li>
+				<div class="collection-item avatar">
+					<i class="material-icons circle ">perm_identity</i>
+					<span class="title">
+						Username:
+					</span>
+					<p>
+						{{user.username}}
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="collection-item avatar">
+					<i class="fa fa-user-circle circle" aria-hidden="false"></i>
+					<span class="title">
+						NickName:
+					</span>
+					<p>
+						{{user.my_profile.nick_name}}
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="collection-item avatar">
+					<i class="material-icons circle ">insert_chart</i>
+					<span class="title">
+						Description:
+					</span>
+					<p>
+						{{user.my_profile.description}}
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="collection-item avatar">
+					<i class="fa fa-venus-mars circle" aria-hidden="true"></i>
+					<span class="title">
+						Gender:
+					</span>
+					<p>
+						{{user.my_profile.get_gender_display}}
+					</p>
+				</div>
+			</li>
+
+			<li>
+				<div class="collection-item avatar">
+					<i class="material-icons circle">email</i>
+					<span class="title">
+						Email:
+					</span>
+					<p>
+						{{user.email}}
+					</p>
+				</div>
+			</li>
+	
+			<li>
+				<div class="collection-item avatar">
+					<i class="fa fa-paper-plane circle" aria-hidden="true"></i>
+					<span class="title">
+						Postcards sent:
+					</span>
+					<p>
+						{{user.my_profile.post_sent}}
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="collection-item avatar">
+					<i class="fa fa-inbox circle" aria-hidden="true"></i>
+					<span class="title">
+						Postcards received:
+					</span>
+					<p>
+						{{user.my_profile.post_sent}}
+					</p>
+				</div>
+			</li>
+		</ul>	
+	</div>				
+</div>
 
 {% endblock %}
 
