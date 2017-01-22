@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$('select').material_select();
+	$('.modal').modal();
 });
 
 
@@ -52,7 +53,12 @@ function getDistrictList(idString,code){
     			$('#'+idString).trigger('contentChanged');
 			}else
 				$('#'+idString).hide();  
-			  
 		}    
 	})   
 }  
+
+$("#id_user_country").change(function(){
+	document.getElementById('id_detail_address').placeholder = "收信地址为其他国家，请在详细地址处写明完整地址。";
+});
+
+// 

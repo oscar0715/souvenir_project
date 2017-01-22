@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 
@@ -24,7 +25,7 @@ def createAddress(request):
 			user_address = form.save(commit=False)
 			# 提交
 			user_address.save()
-			return HttpResponse('Thank you!')
+			return HttpResponseRedirect(reverse('accounts:createAddress'))
 		else:
 			logging.debug("[view.BUG] = " + "wrong!")
 
@@ -35,3 +36,12 @@ def createAddress(request):
 		'user_addresses' : user_addresses
 	}
 	return render(request,'accounts/profile_address.html',dictList)
+
+@login_required(login_url='/accounts/signin/')
+def deleteAddress(request):
+	address_id = int(request.GET["id"])
+	User_Address.objects.get(pk=address_id).delete()
+
+
+	return HttpResponseRedirect(reverse('accounts:createAddress'))
+		

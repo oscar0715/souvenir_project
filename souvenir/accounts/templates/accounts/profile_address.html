@@ -4,17 +4,27 @@
 
 {% block meta %}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- <link rel="stylesheet" href="{% static '/accounts/css/profile_detail.css' %}"> -->
+	<link rel="stylesheet" href="{% static '/accounts/css/profile_address.css' %}">
 {% endblock %}
 
 {% block profile_content %}
 {% include "accounts/address_list.html" %} 
-{% include "accounts/create_user_address.html" %} 
+
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content "> 
+		{% include "accounts/create_user_address.html" %} 
+	</div>
+
+</div>
+
 
 
 {% endblock %}
 
-{% block script %}
+{% block morescript %}
 	<script type="text/javascript" src="{% static '/accounts/js/profile_address.js' %}"></script>
 {% endblock %}
 
