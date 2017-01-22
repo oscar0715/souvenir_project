@@ -7,6 +7,6 @@ app_name = 'accounts'
 
 
 urlpatterns = [
-	# 获取 Signin form
-    url(r'^getSignInForm/$', views.getSignInForm, name='getSignInForm'),
+
+    url(r'^profile_address/$', views.createAddress, name='createAddress'),
 ]

@@ -34,9 +34,14 @@ class User_Address(models.Model):
 		related_name='user_district',
 		verbose_name ='区')
 
-	detail_address = models.CharField(max_length=200, blank = False)
-	postcode = models.PositiveIntegerField(blank = False)
-	receiver_name = models.CharField(max_length=50,blank= False)
+	detail_address = models.CharField(max_length=200, 
+		blank = False,
+		verbose_name ='详细地址')
+	postcode = models.PositiveIntegerField(blank = False,
+		verbose_name ='邮编')
+	receiver_name = models.CharField(max_length=50,
+		blank= False,
+		verbose_name ='收信人')
 
 	def __str__(self):
 		return self.receiver_name

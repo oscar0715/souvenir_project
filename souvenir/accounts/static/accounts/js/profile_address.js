@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$('select').material_select();
 });
 
+
 $('select').on('contentChanged', function() {
     // re-initialize (update)
     $(this).material_select();
@@ -9,24 +10,24 @@ $('select').on('contentChanged', function() {
 
 $('select').change(function(){
 	// alert(this.value)
-	if (this.id === "id_post_country" ) {
-		getDistrictList("id_post_province",this.value);
-		getDistrictList("id_post_city",'0');
-		getDistrictList("id_post_district",'0');		
+	if (this.id === "id_user_country" ) {
+		getDistrictList("id_user_province",this.value);
+		getDistrictList("id_user_city",'0');
+		getDistrictList("id_user_district",'0');		
 		// if (this.value.valueOf()  === "86".valueOf() ) {
-		// 	$('select[name=post_province]').parent().show();
-		// 	$('select[name=post_city]').parent().show();
-		// 	$('select[name=post_district]').parent().show();
+		// 	$('select[name=user_province]').parent().show();
+		// 	$('select[name=user_city]').parent().show();
+		// 	$('select[name=user_district]').parent().show();
 		// } else {
-		// 	$('select[name=post_province]').parent().hide();
-		// 	$('select[name=post_city]').parent().hide();
-		// 	$('select[name=post_district]').parent().hide();
+		// 	$('select[name=user_province]').parent().hide();
+		// 	$('select[name=user_city]').parent().hide();
+		// 	$('select[name=user_district]').parent().hide();
 		// }
-	} else if (this.id === "id_post_province") {
-		getDistrictList("id_post_city",this.value);
-		getDistrictList("id_post_district",'0');
-	} else if (this.id === "id_post_city")
-		getDistrictList("id_post_district",this.value);
+	} else if (this.id === "id_user_province") {
+		getDistrictList("id_user_city",this.value);
+		getDistrictList("id_user_district",'0');
+	} else if (this.id === "id_user_city")
+		getDistrictList("id_user_district",this.value);
 });
 
 function getDistrictList(idString,code){ 
@@ -41,7 +42,7 @@ function getDistrictList(idString,code){
 			// }     
 			select.options.length = 0
 			if(data.length > 0) {
-				// $("#id_post_province").show();  
+				// $("#id_user_province").show();  
 				for ( i=0; i<data.length; i++ ) {   
 					select.options[i] = new Option();   
 					select.options[i].text = data[i].name;   
@@ -55,4 +56,3 @@ function getDistrictList(idString,code){
 		}    
 	})   
 }  
-

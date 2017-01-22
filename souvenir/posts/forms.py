@@ -8,7 +8,6 @@ from address.models import Country,District
 from django.utils.translation import ugettext_lazy as _
 
 import logging
-
 logger = logging.getLogger(__name__)
 
 provinces_set = District.objects.filter(code__regex = r'^..(0){4}$') | District.objects.filter(code = 0)
@@ -30,7 +29,7 @@ class PostForm(ModelForm):
 	
 	def __init__(self, *args, **kwargs):
 	    super(PostForm, self).__init__(*args, **kwargs)
-	    # 37 是中国的 在 address_country 表中的id，注意不是code
+	    # 86 是中国的 在 address_country 表中的id （code 作为id）
 	    self.initial['post_country'] = 86
 	    self.fields['post_country'].empty_label = "请选择"
 
@@ -45,6 +44,7 @@ class PostForm(ModelForm):
 	    self.fields["post_city"].queryset = District.objects.filter(code__regex = r'^.{4}(0){2}$') | District.objects.filter(code = 0)| District.objects.filter(code = -1)
 	    self.fields['post_city'].empty_label = None
 	    self.fields['post_city'].choices = [(province.code,province.name) for province in minus_set]
+	    
 	    self.fields["post_district"].queryset = District.objects.filter(code__regex = r'(([1-9].)|(.[1-9]))$') | District.objects.filter(code = 0)
 	    self.fields['post_district'].empty_label = None
 	    self.fields['post_district'].choices = [(province.code,province.name) for province in minus_set]

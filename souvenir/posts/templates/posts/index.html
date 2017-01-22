@@ -31,11 +31,14 @@
 		{% for post in posts %}
 			<div class="row ">
 				<div class="col s12 m6 offset-m3">
-					<div class="card  hoverable">
+
+					<div class="card hoverable">
+
 						<div class="card-image">
 							<img class="materialboxed" src="{{ post.post_picture.url }}">
 							<span class="card-title"></span>
 						</div>
+
 						<div class="card-content" onclick="goToPostDetail('/posts/{{post.id}}')">
 							<div class="row truncate">
 								<div class="col post_title">
@@ -49,8 +52,8 @@
 							</div>
 							<p>{{ post.post_description }}</p>
 						</div>
-						<div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
 
+						<div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
 								<div class="chip ">
 									{{post.post_country}}
 							  	</div>

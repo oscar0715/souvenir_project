@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import userena 
-from userena.views import signup
 
 urlpatterns = [
 
@@ -35,6 +34,9 @@ urlpatterns = [
 
 	# posts
 	url(r'^posts/', include('posts.urls')),
+
+	# address
+	url(r'^address/', include('address.urls')),
 
 ]
 
