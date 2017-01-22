@@ -1,6 +1,39 @@
 <div class="card-panel">
-	{% for address in user_addresses %}
-		{{ address.user_country }}
-	{% endfor %}
+	
+
+	<table class="striped highlight responsive-table">
+		<thead>
+			<tr>
+				<th data-field="receiver">收信人</th>
+				<th data-field="district">所在地区</th>
+				<th data-field="detail">详细地址</th>
+				<th data-field="postcode">邮编</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for address in user_addresses %}
+			<tr>
+				<td>{{ address.receiver_name}}</td>
+				<td>
+					{{ address.user_country}} &nbsp;
+					{% if address.user_province != 0 and address.user_province != -1 %}
+						{{ address.user_province}}
+					{% endif %} &nbsp;
+					{% if address.user_city != 0 and address.user_city != -1  and address.user_city.name != address.user_province.name %}
+						{{ address.user_city}}
+					{% endif %} &nbsp;
+					{% if address.user_district != 0 and address.user_district != -1   %}
+						{{ address.user_district}}
+					{% endif %} &nbsp;
+				</td>
+				
+				<td>{{ address.detail_address}}</td>
+				<td>{{ address.postcode}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+							
 </div>
 
