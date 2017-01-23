@@ -1,5 +1,5 @@
 <div class="card-panel">
-	{% if user_addresses.count != 0 %}
+	
 		<table class="address_list striped highlight responsive-table">
 			<thead>
 				<tr>
@@ -12,45 +12,48 @@
 			</thead>
 
 			<tbody>
-
-				{% for address in user_addresses %}
-				<tr class="row">
-					<td>{{ address.receiver_name}}</td>
-					<td>
-						{{ address.user_country}} &nbsp;
-						{% if address.user_province.code != 0 and address.user_province.code != -1 %}
-							{{ address.user_province}}
-						{% endif %} &nbsp;
-						{% if address.user_city.code != 0 and address.user_city.code != -1 and address.user_city.name != address.user_province.name %}
-							{{ address.user_city}}
-						{% endif %} &nbsp;
-						{% if address.user_district.code != 0 and address.user_district.code != -1   %}
-							{{ address.user_district}}
-						{% endif %} &nbsp;
-					</td>
-					
-					<td>{{ address.detail_address}}</td>
-					<td>{{ address.postcode}}</td>
-					<td>
-						<a href="/accounts/delete_address/?id={{ address.id }} ">
-							<i class="material-icons red-text" >delete</i>
-						</a>
+				{% if user_addresses.count != 0 %}
+					{% for address in user_addresses %}
+					<tr class="row">
+						<td>{{ address.receiver_name}}</td>
+						<td>
+							{{ address.user_country}} &nbsp;
+							{% if address.user_province.code != 0 and address.user_province.code != -1 %}
+								{{ address.user_province}}
+							{% endif %} &nbsp;
+							{% if address.user_city.code != 0 and address.user_city.code != -1 and address.user_city.name != address.user_province.name %}
+								{{ address.user_city}}
+							{% endif %} &nbsp;
+							{% if address.user_district.code != 0 and address.user_district.code != -1   %}
+								{{ address.user_district}}
+							{% endif %} &nbsp;
+						</td>
 						
-					</td>
-				</tr>
-				{% endfor %}
+						<td>{{ address.detail_address}}</td>
+						<td>{{ address.postcode}}</td>
+						<td>
+							<a href="/accounts/delete_address/?id={{ address.id }} ">
+								<i class="material-icons red-text" >delete</i>
+							</a>
+							
+						</td>
+					</tr>
+					{% endfor %}
+				{% else %}
+					<tr class="row">
+						<td>您还未添加地址</td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				{% endif %}
 
 			</tbody>
 		</table>
-	{% else %}
-		<h5>空空如也Orz...马上添加一个收信地址吧!</h5>
-	{% endif %}
-
-	<!-- Modal Trigger -->
-	<br/>
-	<div>
-		<a class="waves-effect waves-light btn" href="#modal1">添加地址</a>	
-	</div>
+	
+	
 				
 </div>
 

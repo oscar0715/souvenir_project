@@ -8,6 +8,8 @@ from userena.forms import (SignupForm, AuthenticationForm)
 from address.forms import UserAddressForm
 from address.models import User_Address
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.

@@ -1,12 +1,11 @@
 $(document).ready(function() {
 	$('select').material_select();
-	$('.modal').modal();
 });
 
 
 $('select').on('contentChanged', function() {
-    // re-initialize (update)
-    $(this).material_select();
+		// re-initialize (update)
+		$(this).material_select();
 });
 
 $('select').change(function(){
@@ -50,7 +49,7 @@ function getDistrictList(idString,code){
 					select.options[i].value = data[i].code; 
 				}
 				// trigger event
-    			$('#'+idString).trigger('contentChanged');
+					$('#'+idString).trigger('contentChanged');
 			}else
 				$('#'+idString).hide();  
 		}    
@@ -61,4 +60,22 @@ $("#id_user_country").change(function(){
 	document.getElementById('id_detail_address').placeholder = "收信地址为其他国家，请在详细地址处写明完整地址。";
 });
 
-// 
+$('.modal').modal({
+		dismissible: false, // Modal can be dismissed by clicking outside of the modal
+		opacity: .5, // Opacity of modal background
+		in_duration: 300, // Transition in duration
+		out_duration: 200, // Transition out duration
+		starting_top: '4%', // Starting top style attribute
+		ending_top: '10%', // Ending top style attribute
+		ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+			// alert("Ready");
+			console.log(modal, trigger);
+		},
+		complete: function() {  } // Callback for Modal close
+	}
+);
+
+$("#save_button").click(function(){
+	$('#address_form').submit();
+});
+
