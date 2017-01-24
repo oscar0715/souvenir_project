@@ -15,7 +15,62 @@
 				  <span class="card-title">{{ post.post_title }}</span>
 			</div>
 			<div class="card-content">
-				  <p>{{ post.post_description }}</p>
+				<div>
+					<p>{{ post.post_description }}</p>
+				</div>
+
+				<br/><div class="divider"></div><br/>
+				
+				<div>
+					<div class="chip ">{{ post.post_country}}</div> 
+					&nbsp;
+					{% if post.post_province.code != 0 and post.post_province.code != -1 %}
+						<div class="chip ">{{ post.post_province}}</div>
+
+					{% endif %} 
+					&nbsp;
+					{% if post.post_city.code != 0 and post.post_city.code != -1 and post.post_city.name != post.post_province.name %}
+						<div class="chip ">{{ post.post_city}}</div>
+
+					{% endif %} 
+					&nbsp;
+					{% if post.post_district.code != 0 and post.post_district.code != -1   %}
+						<div class="chip ">{{ post.post_district}}</div>
+
+					{% endif %} 
+					&nbsp;
+
+					<div class="right">
+					
+						发布时间：{{ post.created}}
+						<i class="material-icons ">av_timer</i>
+					</div> 
+
+				</div>
+
+				<br/><div class="divider"></div><br/>
+
+				<div >
+					
+					<div class="chip ">
+						总数：{{post.post_quantity}} 张
+					</div>
+					&nbsp;
+					{% if post.card_left > 0 %}
+						<div class="chip green  accent-1">
+							可领取数量：{{post.post_quantity}} 张
+						</div>
+					{% else %}
+						<div class="chip red accent-1">
+							已领完Orz
+						</div>
+					{% endif %}
+
+					<button class="btn waves-effect waves-light right" type="submit" name="action">领取
+						<i class="material-icons right">add</i>
+		  			</button>
+
+				</div>
 			</div>
 
 		</div>

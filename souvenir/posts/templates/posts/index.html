@@ -28,9 +28,10 @@
 	</div>
 
 	<div class="container" id="post_list">
-		{% for post in posts %}
+		
 			<div class="row ">
-				<div class="col s12 m6 offset-m3">
+				{% for post in posts %}
+				<div class="col s6">
 
 					<div class="card hoverable">
 
@@ -54,31 +55,32 @@
 						</div>
 
 						<div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
-								<div class="chip ">
-									{{post.post_country}}
+							<div class="chip ">
+								{{post.post_country}}
+						  	</div>
+
+						  	{% if post.post_province.code != 0 and post.post_province.code != -1 %}
+							  	<div class="chip ">
+									{{post.post_province}}
 							  	</div>
+							{% endif %}
 
-							  	{% if post.post_province.code != 0 and post.post_province.code != -1 %}
-								  	<div class="chip ">
-										{{post.post_province}}
-								  	</div>
-								{% endif %}
-
-								{% if post.card_left > 0 %}
-								  	<div class="chip light-blue accent-1">
-								    	待领取 {{post.card_left}} 张
-								  	</div>
-								{% else %}
-									<div class="chip ">
-								    	已领完Orz
-								  	</div>
-								{% endif %}
+							{% if post.card_left > 0 %}
+							  	<div class="chip light-blue accent-1">
+							    	待领取 {{post.card_left}} 张
+							  	</div>
+							{% else %}
+								<div class="chip ">
+							    	已领完Orz
+							  	</div>
+							{% endif %}
 						</div>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
 
-		{% endfor %}
+		
 	</div>
 {% endblock %}
 

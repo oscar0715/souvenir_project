@@ -17,16 +17,20 @@
 					<tr class="row">
 						<td>{{ address.receiver_name}}</td>
 						<td>
-							{{ address.user_country}} &nbsp;
+							{{ address.user_country}} 
+							&nbsp;
 							{% if address.user_province.code != 0 and address.user_province.code != -1 %}
 								{{ address.user_province}}
-							{% endif %} &nbsp;
+							{% endif %} 
+							&nbsp;
 							{% if address.user_city.code != 0 and address.user_city.code != -1 and address.user_city.name != address.user_province.name %}
 								{{ address.user_city}}
-							{% endif %} &nbsp;
+							{% endif %} 
+							&nbsp;
 							{% if address.user_district.code != 0 and address.user_district.code != -1   %}
 								{{ address.user_district}}
-							{% endif %} &nbsp;
+							{% endif %} 
+							&nbsp;
 						</td>
 						
 						<td>{{ address.detail_address}}</td>
