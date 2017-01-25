@@ -3,15 +3,11 @@ from address.models import District, Country
 from accounts.models import MyProfile
 
 
-# 设置 post 图片的保存路径
-def user_directory_path(instance, filename):
+# # 设置 post 图片的保存路径
+
+def post_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'post_image/user_{0}/{1}'.format(instance.user.id,filename)
-
-# def user_directory_path(instance, filename):
-#     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-#     return 'post_image/user_{0}/{1}'.format(instance.user.id,filename)
-
+    return 'post_images/user_{0}/{1}'.format(instance.user.id,filename)
 
 
 # Create your models here.
@@ -44,7 +40,7 @@ class Post(TimeStampedModel):
 	# picture
 	post_picture = models.ImageField(null=True,
 		blank = True,
-		upload_to=user_directory_path,
+		upload_to=post_directory_path,
 		verbose_name ='上传一张图片'
 	)
 
@@ -67,20 +63,12 @@ class Post(TimeStampedModel):
 	def __str__(self):
 		return self.post_title 
 
-# class CardClaim(TimeStampedModel):
+class CardClaim(TimeStampedModel):
 	
-# 	post = models.ForeignKey(Post)
-# 	claimer = models.ForeignKey(MyProfile)
-	
-# 	check_picture = models.ImageField(null=True,
-# 		blank = True,
-# 		upload_to=user_directory_path,
-# 		verbose_name ='上传确认图片'
-# 	)
+	post = models.ForeignKey(Post)
+	claimer = models.ForeignKey(MyProfile)
 
-# 	is_picture_uploaded = models.BooleanField(default=False)
-# 	is_picture_checked = models.BooleanField(default=False)
-# 	is_sent = models.BooleanField(default=False)
-# 	is_received = models.BooleanField(default=False)
+	is_sent = models.BooleanField(default=False)
+	is_received = models.BooleanField(default=False)
 
 

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 
 from .forms import PostForm
-from .models import Post
+from .models import Post,CardClaim
 
 import logging
 logger = logging.getLogger(__name__)
@@ -58,3 +58,29 @@ class IndexView(ListView):
 class DetailView(DetailView):
 	model = Post
 	template_name = 'posts/detail.html'
+
+	def get_user(self):
+		return self.request.user
+
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super(DetailView, self).get_context_data(**kwargs)
+		current_user = self.request.user.my_profile
+		user_type = 0;
+		if self.object.user == current_user:
+			# 发布用户
+			user_type = 1
+		elif CardClaim.objects.filter(claimer=current_user).count()>0:
+			# 已领取用户
+			user_type = 2
+		context['current_user_type'] = user_type
+
+		return context
+
+# 判断当前post下，当前用户是
+# 1. 发布者
+# 2. 已经领取
+# 3. 未领取
+
+
+
