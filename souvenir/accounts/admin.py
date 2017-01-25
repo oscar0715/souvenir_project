@@ -23,6 +23,5 @@ class CustomUserAdmin(UserAdmin):
         if not obj:
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
-
-logging.debug("[accounts.admin] = " + "Here")
+        
 admin.site.register(User, CustomUserAdmin)

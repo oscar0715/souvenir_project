@@ -6,6 +6,10 @@
 
 {% block content_title %}{% endblock %}
 
+{% block meta %}
+<link rel="stylesheet" type="text/css" href="{% static 'posts/css/detail.css' %}" media="screen,projection">
+{% endblock %}   
+
 {% block content %}
 <div class="row">
 	<div class="col s12 m8 offset-m2">
@@ -46,12 +50,6 @@
 					{% endif %} 
 					&nbsp;
 
-					<div class="right">
-					
-						发布时间：{{ post.created}}
-						<i class="material-icons ">av_timer</i>
-					</div> 
-
 				</div>
 
 				<br/><div class="divider"></div><br/>
@@ -64,7 +62,7 @@
 					&nbsp;
 					{% if post.card_left > 0 %}
 						<div class="chip green  accent-1">
-							可领取数量：{{post.post_quantity}} 张
+							可领取数量：{{post.card_left}} 张
 						</div>
 					{% else %}
 						<div class="chip red accent-1">
@@ -77,18 +75,37 @@
 							<i class="material-icons right">mode_edit</i>
 			  			</a>
 			  		{% elif current_user_type == 2 %}
-			  			<a class="btn waves-effect waves-light right"  disabled>已领取
-							<i class="material-icons right">add</i>
-			  			</a>
+			  			
+			  				<a class="btn waves-effect waves-light right"  disabled>已领取
+								<i class="material-icons right">add</i>
+				  			</a>
+			  			
 			  		{% else %}
-			  			<a class="btn waves-effect waves-light right">领取
-							<i class="material-icons right">add</i>
-			  			</a>
+			  			<form id="add_form" method="post" action="/posts/claim/" >
+				            {% csrf_token %}
+				  			<input type="hidden" name="post_id" value="{{ post.id }}" />
+							<input type="hidden" name="claimer_id" value="{{ user.id }}" />
+							<a class="btn waves-effect waves-light right" onclick="$('#add_form').submit()">领取
+								<i class="material-icons right">add</i>
+				  			</a>
+				  		</form>
 					{% endif %}
 				</div>
+
+				<br/><div class="divider"></div><br/>
+
+				<div>
+					<div class="">
+						<i class="material-icons ">av_timer</i>
+						{{ post.created}}
+					</div>
+				</div>
+				 
 			</div>
 
 		</div>
 	</div>
 </div>
 {% endblock %}
+
+

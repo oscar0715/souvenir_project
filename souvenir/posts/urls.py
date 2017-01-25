@@ -15,4 +15,7 @@ urlpatterns = [
     
     # 查看某个post的详细列表
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+
+    # 申请一张 Postcard
+    url(r'^claim/$', views.claim, name='claim'),
 ]

@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 from .forms import PostForm
 from .models import Post,CardClaim
+from accounts.models import MyProfile
 
 import logging
 logger = logging.getLogger(__name__)
@@ -73,14 +74,31 @@ class DetailView(DetailView):
 		elif CardClaim.objects.filter(claimer=current_user).count()>0:
 			# 已领取用户
 			user_type = 2
-		context['current_user_type'] = user_type
 
+		context['current_user_type'] = user_type
+		logging.debug("[user_type] = " + str(user_type))
 		return context
 
 # 判断当前post下，当前用户是
-# 1. 发布者
+# 0. 未领取
+# 1. 发布者 
 # 2. 已经领取
-# 3. 未领取
+
+def claim(request):
+	if request.method == 'POST':
+		post_id = request.POST.get('post_id', False)
+		claimer_id = request.POST.get('claimer_id', False)
+
+		post = Post.objects.get(pk=post_id)
+		my_profile = MyProfile.objects.get(pk = claimer_id)
+
+		cardclaim = CardClaim.objects.create(post=post,claimer=my_profile)
+
+		card_left = post.card_left - 1
+		post.card_left = card_left
+		post.save()
+
+		return HttpResponseRedirect('/posts/'+post_id+"/")
 
 
 
