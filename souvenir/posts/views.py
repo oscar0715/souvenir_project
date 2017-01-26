@@ -83,7 +83,7 @@ class DetailView(DetailView):
 # 0. 未领取
 # 1. 发布者 
 # 2. 已经领取
-
+@login_required(login_url='/accounts/signin/')
 def claim(request):
 	if request.method == 'POST':
 		post_id = request.POST.get('post_id', False)
@@ -103,5 +103,10 @@ def claim(request):
 
 			return HttpResponseRedirect('/posts/'+post_id+"/")
 
+# List all of the Posts of the user
+class UserPostListView(ListView):
+	template_name = 'posts/profile_userpost.html'
+	context_object_name = 'posts'
 
-
+	def get_queryset(self):
+		return Post.objects.filter(user = self.request.user.my_profile)

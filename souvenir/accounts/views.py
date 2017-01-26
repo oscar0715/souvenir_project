@@ -46,4 +46,4 @@ def deleteAddress(request):
 
 
 	return HttpResponseRedirect(reverse('accounts:createAddress'))
-		
+
