@@ -71,7 +71,7 @@ class DetailView(DetailView):
 		if self.object.user == current_user:
 			# 发布用户
 			user_type = 1
-		elif CardClaim.objects.filter(claimer=current_user).count()>0:
+		elif CardClaim.objects.filter(post=self.object, claimer=current_user).count()>0:
 			# 已领取用户
 			user_type = 2
 
@@ -92,13 +92,16 @@ def claim(request):
 		post = Post.objects.get(pk=post_id)
 		my_profile = MyProfile.objects.get(pk = claimer_id)
 
-		cardclaim = CardClaim.objects.create(post=post,claimer=my_profile)
+		if CardClaim.objects.filter(post=post,claimer=my_profile).count()>0:
+			pass
+		else:
+			cardclaim = CardClaim.objects.create(post=post,claimer=my_profile)
 
-		card_left = post.card_left - 1
-		post.card_left = card_left
-		post.save()
+			card_left = post.card_left - 1
+			post.card_left = card_left
+			post.save()
 
-		return HttpResponseRedirect('/posts/'+post_id+"/")
+			return HttpResponseRedirect('/posts/'+post_id+"/")
 
 
 
