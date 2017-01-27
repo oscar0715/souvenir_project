@@ -2,8 +2,6 @@ from django.db import models
 
 from accounts.models import MyProfile
 
-
-
 # Create your models here.
 class District(models.Model):
 	code = models.IntegerField(primary_key=True)
@@ -44,5 +42,10 @@ class User_Address(models.Model):
 		verbose_name ='收信人')
 
 	def __str__(self):
-		return self.receiver_name
+		return self.receiver_name \
+			+' '+self.user_country.name \
+			+' '+self.user_province.name \
+			+' '+self.user_city.name \
+
+		
 

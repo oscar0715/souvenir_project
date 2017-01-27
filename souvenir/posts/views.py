@@ -5,8 +5,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 from .forms import PostForm
+from address.forms import UserAddressSelectForm
 from .models import Post,CardClaim
 from accounts.models import MyProfile
+from address.models import User_Address
 
 import logging
 logger = logging.getLogger(__name__)
@@ -19,14 +21,6 @@ def newPost(request):
 		current_user = request.user.my_profile
 		form = PostForm(request.POST,request.FILES or None,instance=Post(user = current_user))
 		
-		# form.data['post_province'] = District.objects.get(code=form.data['post_province']).code
-		# form.data['post_city'] = District.objects.get(code=form.data['post_city']).code
-		# form.data['post_district'] = District.objects.get(code=form.data['post_district']).code
-		# logging.debug("[view.is_valid_post_country] = " + form.data['post_country'])
-		# logging.debug("[view.is_valid_post_province] = " + form.data['post_province'])
-		# logging.debug("[view.is_valid_post_city] = " +form.data['post_city'])
-		# logging.debug("[view.is_valid_post_district] = " + form.data['post_district'])
-
 		if form.is_valid():
 			# 创建一个 instance 但是不提交
 			post = form.save(commit=False)
@@ -44,8 +38,6 @@ def newPost(request):
 		'form':form,
 	}
 	return render(request,'posts/new.html',dictList)
-
-
 
 # List all of the Posts	
 class IndexView(ListView):
@@ -66,7 +58,9 @@ class DetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		# Call the base implementation first to get a context
 		context = super(DetailView, self).get_context_data(**kwargs)
+
 		current_user = self.request.user.my_profile
+		# get user_type
 		user_type = 0;
 		if self.object.user == current_user:
 			# 发布用户
@@ -74,9 +68,16 @@ class DetailView(DetailView):
 		elif CardClaim.objects.filter(post=self.object, claimer=current_user).count()>0:
 			# 已领取用户
 			user_type = 2
-
 		context['current_user_type'] = user_type
-		logging.debug("[user_type] = " + str(user_type))
+		
+		# logging.debug("[user_type] = " + str(user_type))
+
+		# get user addresses
+		context['addresses'] = User_Address.objects.filter(user=current_user)
+
+		address_form = UserAddressSelectForm(user=current_user)
+		context['address_form'] = address_form
+
 		return context
 
 # 判断当前post下，当前用户是
@@ -88,14 +89,20 @@ def claim(request):
 	if request.method == 'POST':
 		post_id = request.POST.get('post_id', False)
 		claimer_id = request.POST.get('claimer_id', False)
+		address_id = request.POST.get('addresses', False)
 
+		# logging.debug("[view.address_id] = " + str(request.POST.get('addresses', False)))
+
+		address = User_Address.objects.get(pk=address_id)
 		post = Post.objects.get(pk=post_id)
 		my_profile = MyProfile.objects.get(pk = claimer_id)
 
 		if CardClaim.objects.filter(post=post,claimer=my_profile).count()>0:
 			pass
 		else:
-			cardclaim = CardClaim.objects.create(post=post,claimer=my_profile)
+			cardclaim = CardClaim.objects.create(post=post,
+				claimer=my_profile,
+				claimer_address=address)
 
 			card_left = post.card_left - 1
 			post.card_left = card_left
@@ -105,7 +112,7 @@ def claim(request):
 
 # List all of the Posts of the user
 class UserPostListView(ListView):
-	template_name = 'posts/profile_userpost.html'
+	template_name = 'posts/userposts.html'
 	context_object_name = 'posts'
 
 	def get_queryset(self):
