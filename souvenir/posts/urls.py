@@ -15,6 +15,12 @@ urlpatterns = [
 
     # 用户的Post
     url(r'^userposts/$', views.UserPostListView.as_view(), name="userposts"),
+
+    # 用户领取的Post
+    url(r'^userclaims/$', views.UserClaimListView.as_view(), name="userclaims"),
+
+    # 用户需要寄出的明信片
+    url(r'^useroutbox/$', views.UserOutboxListView.as_view(), name="useroutbox"),
     
     # 查看某个post的详细列表
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),

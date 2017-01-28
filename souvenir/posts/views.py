@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import PostForm
 from address.forms import UserAddressSelectForm
-from .models import Post,CardClaim
+from .models import Post, CardClaim
 from accounts.models import MyProfile
 from address.models import User_Address
 
@@ -117,3 +117,20 @@ class UserPostListView(ListView):
 
 	def get_queryset(self):
 		return Post.objects.filter(user = self.request.user.my_profile)
+
+# List all of the Posts of the user claims
+class UserClaimListView(ListView):
+	template_name = 'posts/userclaims.html'
+	context_object_name = 'cardclaims'
+
+	def get_queryset(self):
+		return CardClaim.objects.filter(claimer = self.request.user.my_profile)
+
+# List all of the Claimer that current user should send a postcard to 
+class UserOutboxListView(ListView):
+	template_name = 'posts/useroutbox.html'
+	context_object_name = 'cardclaims'
+
+	def get_queryset(self):
+		posts = Post.objects.filter(user = self.request.user.my_profile )
+		return CardClaim.objects.filter(post__in = posts)
