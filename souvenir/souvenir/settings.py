@@ -169,7 +169,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SITE_ID = 1
+SITE_ID = 5
 
 # logging 
 logging.basicConfig(
