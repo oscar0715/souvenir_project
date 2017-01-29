@@ -20,9 +20,13 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from posts import views
+
 import userena 
 
 urlpatterns = [
+	
+	url(r'^$', views.IndexView.as_view()),
 
 	# admin url
 	url(r'^admin/', admin.site.urls),
