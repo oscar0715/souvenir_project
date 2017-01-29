@@ -27,7 +27,7 @@ def createAddress(request):
 			user_address = form.save(commit=False)
 			# 提交
 			user_address.save()
-			return HttpResponseRedirect(reverse('accounts:createAddress'))
+			return HttpResponseRedirect(reverse('accounts:address_added'))
 		else:
 			logging.debug("[view.BUG] = " + "wrong!")
 
@@ -38,6 +38,16 @@ def createAddress(request):
 		'user_addresses' : user_addresses
 	}
 	return render(request,'accounts/profile_address.html',dictList)
+
+@login_required(login_url='/accounts/signin/')
+def createAddressComplete(request):
+	
+	user_addresses = User_Address.objects.filter(user=request.user.my_profile, is_deleted = False)
+	
+	dictList = {
+		'user_addresses' : user_addresses
+	}
+	return render(request,'accounts/create_user_address_complete.html',dictList)
 
 @login_required(login_url='/accounts/signin/')
 def deleteAddress(request):

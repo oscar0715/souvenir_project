@@ -28,7 +28,7 @@ def newPost(request):
 			post.card_left = form.cleaned_data['post_quantity']
 			# 提交
 			post.save()
-			return HttpResponse('Thank you!')
+			return HttpResponseRedirect('/posts/'+str(post.id)+"/")
 		else:
 			logging.debug("[view.BUG] = " + "wrong!")
 	else: 

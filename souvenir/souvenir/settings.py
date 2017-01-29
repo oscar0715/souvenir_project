@@ -26,9 +26,11 @@ SECRET_KEY = '0wm#nh0^dd!&vp++9r7m_k=vyk+1s^^-#%-rxsy^6y6-0+dj@p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-54-165-121-174.compute-1.amazonaws.com',
+ALLOWED_HOSTS = [
     '127.0.0.1',
-    'localhost']
+    'localhost',
+    'ec2-54-165-121-174.compute-1.amazonaws.com',
+]
 
 
 # Application definition
@@ -167,7 +169,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SITE_ID=1
+SITE_ID = 1
 
 # logging 
 logging.basicConfig(

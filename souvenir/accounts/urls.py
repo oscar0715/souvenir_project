@@ -10,6 +10,7 @@ urlpatterns = [
 	# Address
     url(r'^profile_address/$', views.createAddress, name='createAddress'),
     url(r'^delete_address/', views.deleteAddress, name='delete_address'),
+    url(r'^address_added/$', views.createAddressComplete, name='address_added'),
 
     
 ]

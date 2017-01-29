@@ -1,0 +1,36 @@
+{% extends 'userena/profile_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block meta %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static '/accounts/css/profile_address.css' %}">
+{% endblock %}
+
+
+{% block profile_content %}
+
+{% include "accounts/address_list.html" %} 
+
+<div class="card"> 
+
+	<div class="card-content">
+		<span class="card-title">成功添加新的收信地址</span>
+	</div>
+	
+	<div class="card-content">
+		<div class="row">
+			<p class="col s12">
+				<a id="save_button" class="grey darken-2 waves-effect waves-light btn " href="\accounts\profile_address">继续添加新的地址</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block morescript %}
+	<script type="text/javascript" src="{% static '/accounts/js/profile_address.js' %}"></script>
+{% endblock %}
+

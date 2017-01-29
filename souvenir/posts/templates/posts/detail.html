@@ -71,8 +71,9 @@
 					{% endif %}
 
 					{% if current_user_type == 1 %}
-						<a class="btn waves-effect waves-light right"> 编辑我的发片令
-							<i class="material-icons right">mode_edit</i>
+						<a class="btn waves-effect waves-light right" disabled>
+							这是您自己发片令，不能领取
+							<!-- <i class="material-icons right">mode_edit</i> -->
 							</a>
 						{% elif current_user_type == 2 %}
 							
@@ -87,7 +88,6 @@
 								<i class="material-icons right">add</i>
 							</a>
 					
-							
 					{% endif %}
 				</div>
 
