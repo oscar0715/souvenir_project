@@ -45,7 +45,7 @@ class IndexView(ListView):
 	context_object_name = 'posts'
 
 	def get_queryset(self):
-		return Post.objects.all()
+		return Post.objects.all().order_by('-created')
 
 # Detail of one chosen post
 class DetailView(DetailView):

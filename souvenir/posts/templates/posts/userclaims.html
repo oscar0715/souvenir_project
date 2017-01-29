@@ -26,10 +26,19 @@
 							<div class="col s10">
 								<img src="{{ cardclaim.post.post_picture.url }}" alt="post_picture" class="circle">
 								<span class="title">
-									{{ cardclaim.post.post_title }}
+									发片令标题：{{ cardclaim.post.post_title }}
 								</span>
-								<p class="truncate">
-									{{ cardclaim.post.post_description }}
+								<p >
+									收信人：{{ cardclaim.claimer_address.receiver_name}}
+								</p>
+								<p >
+									收信地址：{{ cardclaim.claimer_address.get_full_address}}
+								</p>
+								<p>
+									邮编：{{ cardclaim.claimer_address.postcode}}
+								</p>
+								<p >
+									认领时间：{{ cardclaim.created }}
 								</p>
 							</div>
 							<div class="col s2">

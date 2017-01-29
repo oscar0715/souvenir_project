@@ -55,7 +55,6 @@ class User_Address(models.Model):
 			+' '+self.user_city.name \
 			+' '+self.user_district.name \
 			+' '+self.detail_address \
-			+' '+str(self.postcode) \
 
 		
 

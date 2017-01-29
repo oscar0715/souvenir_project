@@ -25,9 +25,19 @@
 						<div class="row">
 							<div class="col s10">
 								<img src="{{ cardclaim.claimer.get_mugshot_url }}" alt="post_picture" class="circle">
-								<span class="title">收信人：{{ cardclaim.claimer_address.receiver_name }}</span>
-								<p class="truncate">
-									地址：{{ cardclaim.claimer_address.get_full_address }}
+								<span class="title">
+									发片令标题：{{ cardclaim.post.post_title }}
+								</span>
+								<p>收信人：{{ cardclaim.claimer_address.receiver_name }}
+								</p>
+								<p >
+									收信地址：{{ cardclaim.claimer_address.get_full_address }}
+								</p>
+								<p >
+									收信邮编：{{ cardclaim.claimer_address.postcode }}
+								</p>
+								<p >
+									认领时间：{{ cardclaim.created }}
 								</p>
 							</div>
 							<div class="col s2">
