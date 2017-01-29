@@ -38,8 +38,8 @@ class Post(TimeStampedModel):
 		verbose_name ='待领取')
 	
 	# picture
-	post_picture = models.ImageField(null=True,
-		blank = True,
+	post_picture = models.ImageField(null=False,
+		blank = False,
 		upload_to=post_directory_path,
 		verbose_name ='上传一张图片'
 	)
