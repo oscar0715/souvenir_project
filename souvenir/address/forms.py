@@ -56,5 +56,5 @@ class UserAddressSelectForm(forms.Form):
 	def __init__(self,*args,**kwargs):
 		self.user = kwargs.pop('user')
 		super(UserAddressSelectForm,self).__init__(*args,**kwargs)
-		address_set = User_Address.objects.filter(user=self.user)
+		address_set = User_Address.objects.filter(user=self.user,is_deleted = False)
 		self.fields["addresses"].choices = [(address.id,address.__str__()) for address in address_set]

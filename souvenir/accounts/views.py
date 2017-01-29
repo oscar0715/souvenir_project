@@ -31,7 +31,7 @@ def createAddress(request):
 		else:
 			logging.debug("[view.BUG] = " + "wrong!")
 
-	user_addresses = User_Address.objects.filter(user=request.user.my_profile)
+	user_addresses = User_Address.objects.filter(user=request.user.my_profile, is_deleted = False)
 	
 	dictList = {
 		'form':form,
@@ -42,8 +42,8 @@ def createAddress(request):
 @login_required(login_url='/accounts/signin/')
 def deleteAddress(request):
 	address_id = int(request.GET["id"])
-	User_Address.objects.get(pk=address_id).delete()
-
-
+	user_address = User_Address.objects.get(pk=address_id)
+	user_address.is_deleted = True
+	user_address.save()
 	return HttpResponseRedirect(reverse('accounts:createAddress'))
 

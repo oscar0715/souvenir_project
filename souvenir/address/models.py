@@ -41,6 +41,8 @@ class User_Address(models.Model):
 		blank= False,
 		verbose_name ='收信人')
 
+	is_deleted = models.BooleanField(default = False) 
+
 	def __str__(self):
 		return self.receiver_name \
 			+' '+self.user_country.name \
