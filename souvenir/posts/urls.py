@@ -9,7 +9,7 @@ app_name = 'posts'
 urlpatterns = [
 	# 新建一个 Post
     url(r'^new/$', views.newPost, name='new'),
-    
+
     # 所有 Post
     url(r'^$', views.IndexView.as_view(), name='index'),
 

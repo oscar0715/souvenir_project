@@ -62,12 +62,10 @@ def deleteAddress(request):
 # http://stackoverflow.com/questions/4673985/how-to-update-an-object-from-edit-form-in-django
 @login_required(login_url='/accounts/signin/')
 def editAddress(request,id):
-    logging.debug("[view.BUG] = " + "editAddress")
     instance = get_object_or_404(UserAddress, id=id)
     form = UserAddressForm(request.POST or None, instance=instance)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            logging.debug("[view.BUG] = " + "form.save()")
-            return HttpResponseRedirect(reverse('accounts:createAddress'))
+            return HttpResponseRedirect(reverse('accounts:addressAdded'))
     return render(request, 'accounts/profile_address_edit.html', {'form': form} ) 

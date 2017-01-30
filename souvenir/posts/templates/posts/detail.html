@@ -73,9 +73,9 @@
 
 					{% if current_user_type == 1 %}
 						<a class="btn waves-effect waves-light right" disabled>
-							这是您自己发片令，不能领取
+							您自己的发片令，不能领取
 							<!-- <i class="material-icons right">mode_edit</i> -->
-							</a>
+						</a>
 					{% elif current_user_type == 2 %}
 						
 						<a class="btn waves-effect waves-light right"  disabled>已领取
@@ -94,15 +94,16 @@
 
 				<br/><div class="divider"></div><br/>
 
+				{% if current_user_type == 2 %}
+					<div>
+						<span class="card-title">明信片将会寄到：</span>
+						<p>收信地址：{{ address }}</p>
+						<p>收信人：{{ receiver }}</p>
+					</div>
 
-				<div>
-					<span class="card-title">明信片将会寄到：</span>
-					<p>收信地址：{{ address }}</p>
-					<p>收信人：{{ receiver }}</p>
-				</div>
 
-
-				<br/><div class="divider"></div><br/>
+					<br/><div class="divider"></div><br/>
+				{% endif %}
 
 				<div>
 					<div >
