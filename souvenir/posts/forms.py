@@ -26,6 +26,14 @@ class PostForm(ModelForm):
 			'post_city',
 			'post_district'
 		)
+
+		labels = {
+            "post_title": _("发片令标题 *"),
+            "post_description": _("描述 *"),
+            "post_picture": _("上传一张图片 *"),
+            "post_quantity": _("发片数量 *"),
+        }
+
 	
 	def __init__(self, *args, **kwargs):
 	    super(PostForm, self).__init__(*args, **kwargs)

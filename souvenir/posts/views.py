@@ -68,6 +68,10 @@ class DetailView(DetailView):
 		elif CardClaim.objects.filter(post=self.object, claimer=current_user).count()>0:
 			# 已领取用户
 			user_type = 2
+			address_object = CardClaim.objects.get(post=self.object, claimer=current_user) \
+				.claimer_address
+			context['address'] = address_object.get_full_address
+			context['receiver'] = address_object.receiver_name
 		context['current_user_type'] = user_type
 		
 		# logging.debug("[user_type] = " + str(user_type))

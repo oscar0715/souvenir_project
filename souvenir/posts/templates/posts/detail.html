@@ -76,21 +76,31 @@
 							这是您自己发片令，不能领取
 							<!-- <i class="material-icons right">mode_edit</i> -->
 							</a>
-						{% elif current_user_type == 2 %}
-							
-							<a class="btn waves-effect waves-light right"  disabled>已领取
-							<i class="material-icons right">add</i>
-							</a>
-							
-						{% else %}
+					{% elif current_user_type == 2 %}
+						
+						<a class="btn waves-effect waves-light right"  disabled>已领取
+						<i class="material-icons right">add</i>
+						</a>
 
-							<!-- Modal Trigger -->
-							<a class="waves-effect waves-light btn right" href="#claimmodal">领取
-								<i class="material-icons right">add</i>
-							</a>
+					{% else %}
+
+						<!-- Modal Trigger -->
+						<a class="waves-effect waves-light btn right" href="#claimmodal">领取
+							<i class="material-icons right">add</i>
+						</a>
 					
 					{% endif %}
 				</div>
+
+				<br/><div class="divider"></div><br/>
+
+
+				<div>
+					<span class="card-title">明信片将会寄到：</span>
+					<p>收信地址：{{ address }}</p>
+					<p>收信人：{{ receiver }}</p>
+				</div>
+
 
 				<br/><div class="divider"></div><br/>
 
