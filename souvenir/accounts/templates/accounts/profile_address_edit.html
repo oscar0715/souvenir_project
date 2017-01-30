@@ -30,17 +30,28 @@
 
 {% block morescript %}	
 	<script type="text/javascript" src="{% static '/accounts/js/profile_address.js' %}"></script>
-	<script type="text/javascript" src="{% static '/accounts/js/profile_address_edit.js' %}"></script>
+
 	<script type="text/javascript">
+
 		var provinceCode = "" + {{ form.user_province.value }} ;
 		var cityCode = "" + {{ form.user_city.value }} ;
 		var districtCode = "" + {{ form.user_district.value }} ;
 
-		getDistrictList("id_user_city",provinceCode);
-
+		getDistrictList("id_user_city",provinceCode);	
 		getDistrictList("id_user_district",cityCode);
 
+		setTimeout(function() {
+				console.log($("#id_user_district option").length)
+				$("#id_user_city").val(cityCode);
+				$("#id_user_district").val(districtCode)
+				$('select').material_select();
+		}, 300);
+		
+
 	</script>
-	
+
+	<script type="text/javascript">
+		
+	</script>
 {% endblock %}
 
