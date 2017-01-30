@@ -1,0 +1,39 @@
+<div class="card-image">
+	<img class="materialboxed" src="{{ post.post_picture.url }}">
+</div>
+
+<div class="card-content" onclick="goToPostDetail('/posts/{{post.id}}')">
+	<div class="row truncate">
+		<div class="col post_title">
+			{{ post.post_title }}
+		</div>
+		
+		<div class="col chip grey lighten-4">
+			<img src="{{ post.user.user.my_profile.get_mugshot_url }}"  alt = "Userena Mugshot">
+			{{ post.user.user.username }}
+		</div>
+	</div>
+	<p>{{ post.post_description }}</p>
+</div>
+
+<div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
+	<div class="chip ">
+		{{post.post_country}}
+  	</div>
+
+  	{% if post.post_province.code != 0 and post.post_province.code != -1 %}
+	  	<div class="chip ">
+			{{post.post_province}}
+	  	</div>
+	{% endif %}
+
+	{% if post.card_left > 0 %}
+	  	<div class="chip light-blue accent-1">
+	    	待领取 {{post.card_left}} 张
+	  	</div>
+	{% else %}
+		<div class="chip ">
+	    	已领完Orz
+	  	</div>
+	{% endif %}
+</div>

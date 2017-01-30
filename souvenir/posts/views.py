@@ -108,7 +108,7 @@ def claim(request):
 			post.card_left = card_left
 			post.save()
 
-			return HttpResponseRedirect('/posts/'+post_id+"/")
+			return HttpResponseRedirect(reverse("posts:userclaims"))
 
 # List all of the Posts of the user
 class UserPostListView(ListView):

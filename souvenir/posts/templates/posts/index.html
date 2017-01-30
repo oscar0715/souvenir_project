@@ -11,18 +11,7 @@
 {% block body %}
 	<div id="index-banner" class="parallax-container">
 		<div class="section no-pad-bot">
-			<div class="container">
-				<br><br><br><br>
-				<h1 class="header teal-text text-lighten-2">
-					<!-- Parallax Template</h1> -->
-				<!-- <div class="row ">
-					<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-				</div> -->
-				<!-- <div class="row ">
-					<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-				</div> -->
-				<br><br>
-			</div>
+			<div class="container"></div>
 		</div>
 		<div class="parallax"><img src="{% static 'posts/image/postcard_web.jpg' %}" alt="Unsplashed background img 1"></div>
 	</div>
@@ -33,54 +22,14 @@
 				{% for post in posts %}
 				<div class="col s12 m6 offset-m3">
 
+
 					<div class="card hoverable">
-
-						<div class="card-image">
-							<img class="materialboxed" src="{{ post.post_picture.url }}">
-							<!-- <span class="card-title"></span> -->
-						</div>
-
-						<div class="card-content" onclick="goToPostDetail('/posts/{{post.id}}')">
-							<div class="row truncate">
-								<div class="col post_title">
-									{{ post.post_title }}
-								</div>
-								
-								<div class="col chip grey lighten-4">
-									<img src="{{ post.user.user.my_profile.get_mugshot_url }}"  alt = "Userena Mugshot">
-									{{ post.user.user.username }}
-								</div>
-							</div>
-							<p>{{ post.post_description }}</p>
-						</div>
-
-						<div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
-							<div class="chip ">
-								{{post.post_country}}
-						  	</div>
-
-						  	{% if post.post_province.code != 0 and post.post_province.code != -1 %}
-							  	<div class="chip ">
-									{{post.post_province}}
-							  	</div>
-							{% endif %}
-
-							{% if post.card_left > 0 %}
-							  	<div class="chip light-blue accent-1">
-							    	待领取 {{post.card_left}} 张
-							  	</div>
-							{% else %}
-								<div class="chip ">
-							    	已领完Orz
-							  	</div>
-							{% endif %}
-						</div>
+					{% include "posts/postcontent.html" %}
 					</div>
+					
 				</div>
 				{% endfor %}
 			</div>
-
-		
 	</div>
 {% endblock %}
 
