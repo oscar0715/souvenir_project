@@ -1,0 +1,46 @@
+{% extends 'userena/profile_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block meta %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static '/accounts/css/profile_address.css' %}">
+{% endblock %}
+
+
+{% block profile_content %}
+<div class="card"> 
+
+	<div class="card-content">
+		<span class="card-title">修改收信地址</span>
+	</div>
+	
+	<div class="card-content">
+		{% include "accounts/user_address_form.html" %} 
+	</div>
+
+	<div class="card-content">
+		<a class="waves-effect waves-light grey-text" href="/accounts/profile_address/">
+			<i class="fa fa-long-arrow-left small " aria-hidden="false"></i>
+		</a>
+	</div>
+
+</div>
+{% endblock %}
+
+{% block morescript %}	
+	<script type="text/javascript" src="{% static '/accounts/js/profile_address.js' %}"></script>
+	<script type="text/javascript" src="{% static '/accounts/js/profile_address_edit.js' %}"></script>
+	<script type="text/javascript">
+		var provinceCode = "" + {{ form.user_province.value }} ;
+		var cityCode = "" + {{ form.user_city.value }} ;
+		var districtCode = "" + {{ form.user_district.value }} ;
+
+		getDistrictList("id_user_city",provinceCode);
+
+		getDistrictList("id_user_district",cityCode);
+
+	</script>
+	
+{% endblock %}
+

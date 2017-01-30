@@ -7,13 +7,13 @@
 					<th data-field="district">所在地区</th>
 					<th data-field="detail">详细地址</th>
 					<th data-field="postcode">邮编</th>
-					<th data-field="edit">删除</th>
+					<th data-field="edit">修改</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				{% if user_addresses.count != 0 %}
-					{% for address in user_addresses %}
+				{% if userAddresses.count != 0 %}
+					{% for address in userAddresses %}
 					<tr class="row">
 						<td>{{ address.receiver_name}}</td>
 						<td>
@@ -36,8 +36,8 @@
 						<td>{{ address.detail_address}}</td>
 						<td>{{ address.postcode}}</td>
 						<td>
-							<a href="/accounts/delete_address/?id={{ address.id }} ">
-								<i class="material-icons red-text" >delete</i>
+							<a href="/accounts/address_edit/{{ address.id }} ">
+								<i class="material-icons grey-text" >mode_edit</i>
 							</a>
 							
 						</td>

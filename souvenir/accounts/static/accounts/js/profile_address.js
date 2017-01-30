@@ -14,15 +14,6 @@ $('select').change(function(){
 		getDistrictList("id_user_province",this.value);
 		getDistrictList("id_user_city",'0');
 		getDistrictList("id_user_district",'0');		
-		// if (this.value.valueOf()  === "86".valueOf() ) {
-		// 	$('select[name=user_province]').parent().show();
-		// 	$('select[name=user_city]').parent().show();
-		// 	$('select[name=user_district]').parent().show();
-		// } else {
-		// 	$('select[name=user_province]').parent().hide();
-		// 	$('select[name=user_city]').parent().hide();
-		// 	$('select[name=user_district]').parent().hide();
-		// }
 	} else if (this.id === "id_user_province") {
 		getDistrictList("id_user_city",this.value);
 		getDistrictList("id_user_district",'0');
@@ -49,7 +40,7 @@ function getDistrictList(idString,code){
 					select.options[i].value = data[i].code; 
 				}
 				// trigger event
-					$('#'+idString).trigger('contentChanged');
+				$('#'+idString).trigger('contentChanged');
 			}else
 				$('#'+idString).hide();  
 		}    

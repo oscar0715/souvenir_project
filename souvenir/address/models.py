@@ -16,7 +16,7 @@ class Country(models.Model):
 	def __str__(self):
 		return self.name 
 
-class User_Address(models.Model):
+class UserAddress(models.Model):
 	user = models.ForeignKey(MyProfile, 
 		on_delete=models.CASCADE)
 

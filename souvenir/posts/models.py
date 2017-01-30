@@ -1,5 +1,5 @@
 from django.db import models
-from address.models import District, Country, User_Address
+from address.models import District, Country, UserAddress
 from accounts.models import MyProfile
 
 
@@ -69,7 +69,7 @@ class CardClaim(TimeStampedModel):
 	claimer = models.ForeignKey(MyProfile)
 
 	# address
-	claimer_address = models.ForeignKey(User_Address, 
+	claimer_address = models.ForeignKey(UserAddress, 
 		null = True)
 
 	is_sent = models.BooleanField(default=False)

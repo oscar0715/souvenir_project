@@ -2,7 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django import forms
 
-from .models import Country, District, User_Address
+from .models import Country, District, UserAddress
 from accounts.models import MyProfile
 
 from django.utils.translation import ugettext_lazy as _
@@ -16,7 +16,7 @@ minus_set = District.objects.filter(code = -1)
 
 class UserAddressForm(ModelForm):
 	class Meta:
-		model = User_Address
+		model = UserAddress
 		
 		fields = ('user_country',
 			'user_province',
@@ -56,5 +56,6 @@ class UserAddressSelectForm(forms.Form):
 	def __init__(self,*args,**kwargs):
 		self.user = kwargs.pop('user')
 		super(UserAddressSelectForm,self).__init__(*args,**kwargs)
-		address_set = User_Address.objects.filter(user=self.user,is_deleted = False)
+		address_set = UserAddress.objects.filter(user=self.user,is_deleted = False)
 		self.fields["addresses"].choices = [(address.id,address.__str__()) for address in address_set]
+

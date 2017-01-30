@@ -11,7 +11,19 @@
 {% block profile_content %}
 
 {% include "accounts/address_list.html" %} 
-{% include "accounts/create_user_address.html" %} 
+
+<div class="card"> 
+
+	<div class="card-content">
+		<span class="card-title">添加一个收信地址</span>
+	</div>
+	
+	<div class="card-content">
+		{% include "accounts/user_address_form.html" %} 
+	</div>
+
+</div>
+
 
 {% endblock %}
 

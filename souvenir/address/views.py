@@ -35,9 +35,6 @@ def getDistrictList(request):
 			city_regex = province_code+'(([1-9].)|(.[1-9]))0{2}'
 			cities = District.objects.filter(code__regex = r''+city_regex) | District.objects.filter(code = 0)
 
-			# logging.debug("[city_regex] = " + city_regex)
-			# logging.debug("[cities.count()] = " + str(cities.count()))
-
 			results = cities
 
 		# 如果选择的是某个市，则要返回区
@@ -52,8 +49,6 @@ def getDistrictList(request):
 				districts = District.objects.filter(code__regex = r''+district_regex)| District.objects.filter(code = 0)
 			
 			results = districts
-			logging.debug("[district_regex] = " + district_regex)
-			logging.debug("[districts.count()] = " + str(districts.count()))
 		else :
 			# 别的情况不作处理，也没别的情况了
 			# logging.debug("[code] = " + str(code))

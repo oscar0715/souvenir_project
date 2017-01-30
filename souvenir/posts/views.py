@@ -8,7 +8,7 @@ from .forms import PostForm
 from address.forms import UserAddressSelectForm
 from .models import Post, CardClaim
 from accounts.models import MyProfile
-from address.models import User_Address
+from address.models import UserAddress
 
 import logging
 logger = logging.getLogger(__name__)
@@ -77,7 +77,7 @@ class DetailView(DetailView):
 		# logging.debug("[user_type] = " + str(user_type))
 
 		# get user addresses
-		context['addresses'] = User_Address.objects.filter(user=current_user)
+		context['addresses'] = UserAddress.objects.filter(user=current_user)
 
 		address_form = UserAddressSelectForm(user=current_user)
 		context['address_form'] = address_form
@@ -97,7 +97,7 @@ def claim(request):
 
 		# logging.debug("[view.address_id] = " + str(request.POST.get('addresses', False)))
 
-		address = User_Address.objects.get(pk=address_id)
+		address = UserAddress.objects.get(pk=address_id)
 		post = Post.objects.get(pk=post_id)
 		my_profile = MyProfile.objects.get(pk = claimer_id)
 
