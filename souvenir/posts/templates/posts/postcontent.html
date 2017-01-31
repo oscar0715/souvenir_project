@@ -13,7 +13,7 @@
 			{{ post.user.user.username }}
 		</div>
 	</div>
-	<p>{{ post.post_description }}</p>
+	<p class="truncate">{{ post.post_description }}</p>
 </div>
 
 <div class="card-action right-align" onclick="goToPostDetail('/posts/{{post.id}}')">
