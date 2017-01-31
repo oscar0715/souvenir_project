@@ -70,7 +70,7 @@ class IndexSearchView(ListView):
 				district_key = District.objects.get(name__icontains = key)
 
 			except District.DoesNotExist:
-				object_list = Post.objects.all()
+				object_list = Post.objects.all().order_by('-created')
 				return object_list
 
 			try: 
@@ -79,9 +79,9 @@ class IndexSearchView(ListView):
 					Q(post_district = district_key)
 				).order_by('-created')
 			except Post.DoesNotExist:
-				object_list = Post.objects.all()
+				object_list = Post.objects.all().order_by('-created')
 		else:
-			object_list = Post.objects.all()
+			object_list = Post.objects.all().order_by('-created')
 		return object_list
 
 
