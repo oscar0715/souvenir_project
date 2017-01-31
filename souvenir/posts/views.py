@@ -66,7 +66,7 @@ class IndexSearchView(ListView):
 			key = ''
 		if (key != ''):
 			# key = unquote(key)
-			logging.debug("[key] = " + key)
+			# logging.debug("[key] = " + key)
 			
 			try:
 				district_keys = District.objects.filter(name__icontains = key)
