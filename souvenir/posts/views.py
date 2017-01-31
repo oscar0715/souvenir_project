@@ -60,7 +60,6 @@ class IndexSearchView(ListView):
 
 	def get_queryset(self):
 
-		
 		try:
 			key = self.request.GET.get('key') 
 		except:

@@ -28,7 +28,7 @@ def createAddress(request):
             userAddress = form.save(commit=False)
             # 提交
             userAddress.save()
-            return HttpResponseRedirect(reverse('accounts:address_added'))
+            return HttpResponseRedirect(reverse('accounts:addressAdded'))
         else:
             logging.debug("[view.BUG] = " + "wrong!")
 
