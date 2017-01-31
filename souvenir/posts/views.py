@@ -69,16 +69,16 @@ class IndexSearchView(ListView):
 			logging.debug("[key] = " + key)
 			
 			try:
-				district_key = District.objects.get(name__icontains = key)
+				district_keys = District.objects.filter(name__icontains = key)
 
 			except District.DoesNotExist:
 				object_list = Post.objects.all().order_by('-created')
 				return object_list
 
 			try: 
-				object_list = Post.objects.filter(Q(post_city = district_key)|
-					Q(post_province = district_key)|
-					Q(post_district = district_key)
+				object_list = Post.objects.filter(Q(post_city__in = district_keys)|
+					Q(post_province__in = district_keys)|
+					Q(post_district__in = district_keys)
 				).order_by('-created')
 			except Post.DoesNotExist:
 				object_list = Post.objects.all().order_by('-created')
