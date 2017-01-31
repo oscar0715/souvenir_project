@@ -7,12 +7,15 @@ app_name = 'posts'
 
 
 urlpatterns = [
-	# 新建一个 Post
-    url(r'^new/$', views.newPost, name='new'),
-
     # 所有 Post
     url(r'^$', views.IndexView.as_view(), name='index'),
 
+    # 搜索 Post
+    url(r'^search/$', views.IndexSearchView.as_view(), name='search'),
+
+	# 新建一个 Post
+    url(r'^new/$', views.newPost, name='new'),
+    
     # 用户的Post
     url(r'^userposts/$', views.UserPostListView.as_view(), name="userposts"),
 

@@ -47,7 +47,7 @@ class UserAddress(models.Model):
 		return self.receiver_name \
 			+' '+self.user_country.name \
 			+' '+self.user_province.name \
-			+' '+self.user_city.name \
+			+' '+self.user_city.name 
 
 	def get_full_address(self):
 		return self.user_country.name \

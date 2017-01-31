@@ -19,9 +19,19 @@
 	<div class="container" id="post_list">
 		
 			<div class="row ">
+				
+				<div>
+					<form action='/posts/search/' method='GET' >
+						<div class="input-field col s12 m6 offset-m3">
+							
+							<input id="key" name = "key" type="text">
+							<label for="key">搜索城市</label> 
+						</div>	
+					</form>	
+				</div>
+
 				{% for post in posts %}
 				<div class="col s12 m6 offset-m3">
-
 
 					<div class="card hoverable">
 					{% include "posts/postcontent.html" %}

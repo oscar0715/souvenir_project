@@ -59,9 +59,10 @@ class Post(TimeStampedModel):
 
 	# user who creates the post 
 	user = models.ForeignKey(MyProfile)
-
+	
 	def __str__(self):
 		return self.post_title 
+
 
 class CardClaim(TimeStampedModel):
 	

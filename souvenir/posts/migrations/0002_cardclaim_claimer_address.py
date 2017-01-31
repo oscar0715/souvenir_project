@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cardclaim',
             name='claimer_address',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='address.User_Address'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='address.UserAddress'),
         ),
     ]

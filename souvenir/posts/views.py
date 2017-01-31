@@ -3,13 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
-
+from django.db.models import Q
 
 from .forms import PostForm
 from address.forms import UserAddressSelectForm
 from .models import Post, CardClaim
 from accounts.models import MyProfile
-from address.models import UserAddress
+from address.models import UserAddress,District,Country
+
+from urllib.parse import unquote
 
 import logging
 logger = logging.getLogger(__name__)
@@ -47,6 +49,41 @@ class IndexView(ListView):
 
 	def get_queryset(self):
 		return Post.objects.all().order_by('-created')
+
+# List all of the Posts	
+class IndexSearchView(ListView):
+	template_name = 'posts/index.html'
+	context_object_name = 'posts'
+
+	def get_queryset(self):
+
+		
+		try:
+			key = self.request.GET.get('key') 
+		except:
+			key = ''
+		if (key != ''):
+			# key = unquote(key)
+			logging.debug("[key] = " + key)
+			
+			try:
+				district_key = District.objects.get(name__icontains = key)
+
+			except District.DoesNotExist:
+				object_list = Post.objects.all()
+				return object_list
+
+			try: 
+				object_list = Post.objects.filter(Q(post_city = district_key)|
+					Q(post_province = district_key)|
+					Q(post_district = district_key)
+				).order_by('-created')
+			except Post.DoesNotExist:
+				object_list = Post.objects.all()
+		else:
+			object_list = Post.objects.all()
+		return object_list
+
 
 # Detail of one chosen post
 class DetailView(DetailView):
