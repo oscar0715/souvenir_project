@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def createAddress(request):
     if request.method == 'GET':
         form = UserAddressForm()
@@ -40,7 +40,7 @@ def createAddress(request):
     }
     return render(request,'accounts/profile_address.html',dictList)
 
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def createAddressComplete(request):
     
     userAddresses = UserAddress.objects.filter(user=request.user.my_profile, is_deleted = False)
@@ -50,7 +50,7 @@ def createAddressComplete(request):
     }
     return render(request,'accounts/profile_address_complete.html',dictList)
 
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def deleteAddress(request):
     address_id = int(request.GET["id"])
     UserAddress = UserAddress.objects.get(pk=address_id)
@@ -60,7 +60,7 @@ def deleteAddress(request):
 
 
 # http://stackoverflow.com/questions/4673985/how-to-update-an-object-from-edit-form-in-django
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def editAddress(request,id):
     instance = get_object_or_404(UserAddress, id=id)
     form = UserAddressForm(request.POST or None, instance=instance)

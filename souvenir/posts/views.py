@@ -1,9 +1,11 @@
 from django.shortcuts import render,reverse,get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
+
 
 from .forms import PostForm
 from address.forms import UserAddressSelectForm
@@ -16,7 +18,7 @@ from urllib.parse import unquote
 import logging
 logger = logging.getLogger(__name__)
 
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def newPost(request):
 
 	if request.method == 'POST':
@@ -41,6 +43,7 @@ def newPost(request):
 		'form':form,
 	}
 	return render(request,'posts/new.html',dictList)
+
 
 # List all of the Posts	
 class IndexView(ListView):
@@ -85,10 +88,16 @@ class IndexSearchView(ListView):
 		return object_list
 
 
+
 # Detail of one chosen post
-class DetailView(DetailView):
+
+class PostDetailView(DetailView):
 	model = Post
 	template_name = 'posts/detail.html'
+
+	@method_decorator(login_required)
+	def dispatch(self, request, *args, **kwargs):        
+		return super(DetailView, self).dispatch(request, *args, **kwargs)
 
 	def get_user(self):
 		return self.request.user
@@ -126,7 +135,7 @@ class DetailView(DetailView):
 # 0. 未领取
 # 1. 发布者 
 # 2. 已经领取
-@login_required(login_url='/accounts/signin/')
+@login_required(login_url='/users/signin/')
 def claim(request):
 	if request.method == 'POST':
 		post_id = request.POST.get('post_id', False)
