@@ -181,5 +181,6 @@ logging.basicConfig(
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 # urls
 LOGIN_URL = '/users/signin/'
