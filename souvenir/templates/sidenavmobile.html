@@ -1,0 +1,21 @@
+<ul id="slide-out" class="side-nav s6">
+	
+	<li>
+		<div class="userView">
+			<a href="\users\{{ user.username }}"><img class="circle" src="{{ user.my_profile.get_mugshot_url }}" </a>
+			<a href="\users\{{ user.username }}">个人信息</a>
+		</div>
+	</li>
+
+	<li class="divider"></li>
+	<li><a href="\posts\">首页</a></li>
+	<li><a href="\posts\new\">发布发片令</a></li>
+	<li><a href="\posts\userposts\">我的发片令</a></li>
+	<li><a href="\posts\userclaims\">我的收信箱</a></li>
+	<li><a href="\posts\useroutbox\">我的发信箱</a></li>
+
+
+	<!-- <li><a href="#!">two</a></li> -->
+	<li class="divider"></li>
+	<li><a href="\users\signout\">退出</a></li>
+</ul>
