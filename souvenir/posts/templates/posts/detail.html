@@ -71,7 +71,27 @@
 						</div>
 					{% endif %}
 
-					<div class="right">
+					<div class="right hide-on-small-only">
+						{% if current_user_type == 1 %}
+							<a class="btn waves-effect waves-light " disabled>
+								您自己的发片令，不能领取
+								<!-- <i class="material-icons right">mode_edit</i> -->
+							</a>
+						{% elif current_user_type == 2 %}
+							
+							<a class="btn waves-effect waves-light "  disabled>已领取
+							<i class="material-icons right">add</i>
+							</a>
+						{% else %}
+
+							<!-- Modal Trigger -->
+							<a class="waves-effect waves-light btn " href="#claimmodal">领取
+								<i class="material-icons right">add</i>
+							</a>
+						{% endif %}
+					</div>
+
+					<div class="show-on-small-only">
 						{% if current_user_type == 1 %}
 							<a class="btn waves-effect waves-light " disabled>
 								您自己的发片令，不能领取
