@@ -1,0 +1,14 @@
+.nav-avatar{
+	width : 28px;
+	height : 28px;
+	vertical-align: middle;
+}
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+nav {
+	margin: 0 0 2% 0;
+}
