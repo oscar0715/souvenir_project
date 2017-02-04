@@ -178,7 +178,6 @@ LOGIN_URL = '/users/signin/'
 
 
 STATICFILES_DIRS = [
-    # '/var/www/static/',
     os.path.join(BASE_DIR, "static"),
 ]
 
