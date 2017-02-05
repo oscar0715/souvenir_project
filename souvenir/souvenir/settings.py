@@ -29,9 +29,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'ec2-54-165-121-174.compute-1.amazonaws.com',
     'souvenir.menuet.xyz',
-    '54.165.121.174'
+    '54.165.121.174',
+    'ec2-54-165-121-174.compute-1.amazonaws.com',
 ]
 
 
